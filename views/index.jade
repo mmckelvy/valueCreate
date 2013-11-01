@@ -1,5 +1,9 @@
-extends layout
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
 
-block content
-  h1= title
-  p Welcome to #{title}
+  h1 The Site
+  input.userinput(type='text', name='tester', placeholder='enter you username')
