@@ -1,9 +1,11 @@
 doctype 5
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+	head
+	title= title
+	link(rel='stylesheet', href='/stylesheets/style.css')
+	body
 
-  h1 The Site
-  input.userinput(type='text', name='tester', placeholder='enter you username')
+		h1 The Site
+		form#userdata(action='/receive', method='post')
+			input.userinput(type='text', name='tester', placeholder='enter you username')
+			input(type='submit')
