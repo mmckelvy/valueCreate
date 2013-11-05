@@ -1,10 +1,14 @@
+/*
+Header styling
+*/
+
 .title-area {
 	margin-top: 50px;
 	text-align: center;
 }
 
 .home-mainheader {
-	font-weight: 200;
+	font-weight: 100;
 	letter-spacing: 5px;
 	margin-bottom: 5px;
 }
@@ -12,10 +16,21 @@
 .home-subheader {
 	font-size: 18px;
 	font-weight: 100;
-	letter-spacing: 3px;
+	letter-spacing: 5px;
 	color: #cecece;
 	padding-bottom: 10px;
 	border-bottom-style: solid;
 	border-bottom-color: black;
 	border-bottom-width: 1px;
+}
+
+/*
+Main content styling
+*/
+
+.company-link {
+	display: block;
+	font-weight: 200;
+	color: #cecece;
+	letter-spacing: 3px;
 }
