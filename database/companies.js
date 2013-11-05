@@ -3,15 +3,16 @@ var Schema = mongoose.Schema;
 // Create the user schema.
 var companySchema = new Schema ({
 	name: String,
-	yr1rev: Number,
-	revgrowth: Number,
+	yr0rev: Number,
+	revcagr: Number,
 	ebitdaPct: Number,
+	taxRate: Number,
 	dNaPct: Number,
 	capexPct: Number,
-	cnwcPct: Number
+	wcDays: Number
 
 });
 // Create the User model with the user schema.
-var User = mongoose.model('User', userSchema);
-module.exports = User;
+var Company = mongoose.model('Company', companySchema);
+module.exports = Company;
  

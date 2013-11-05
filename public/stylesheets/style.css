@@ -1,0 +1,21 @@
+.title-area {
+	margin-top: 50px;
+	text-align: center;
+}
+
+.home-mainheader {
+	font-weight: 200;
+	letter-spacing: 5px;
+	margin-bottom: 5px;
+}
+
+.home-subheader {
+	font-size: 18px;
+	font-weight: 100;
+	letter-spacing: 3px;
+	color: #cecece;
+	padding-bottom: 10px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+	border-bottom-width: 1px;
+}

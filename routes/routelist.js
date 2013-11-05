@@ -1,6 +1,6 @@
 // var indexController = require('../controllers/index');
 var mongoose = require('mongoose');
-var User = require('../database/users');
+var User = require('../database/companies');
 // var Schema = mongoose.Schema;
 //Define routes.
 module.exports = function (app) {
