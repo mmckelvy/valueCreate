@@ -9,7 +9,10 @@ var companySchema = new Schema ({
 	taxRate: Number,
 	dNaPct: Number,
 	capexPct: Number,
-	wcDays: Number
+	wcDays: Number,
+	intRate: Number,
+	netDebt: Number,
+	multiple: Number
 
 });
 // Create the User model with the user schema.

@@ -1,4 +1,9 @@
 /*
+Global styles
+*/
+
+
+/*
 Header styling
 */
 
@@ -28,9 +33,22 @@ Header styling
 Main content styling
 */
 
-.company-link {
+.introcontent {
+	margin-bottom: 15px;
+}
+
+.menu-text {
 	display: block;
 	font-weight: 200;
 	color: #cecece;
 	letter-spacing: 3px;
+	cursor: pointer;
+}
+
+.menu-text:hover {
+	display: block;
+	font-weight: 200;
+	color: black;
+	letter-spacing: 3px;
+	cursor: pointer;
 }
