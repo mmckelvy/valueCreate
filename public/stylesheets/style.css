@@ -1,11 +1,4 @@
-/*
-Global styles
-*/
-
-
-/*
-Header styling
-*/
+/* Title section */
 
 .title-area {
 	margin-top: 50px;
@@ -29,12 +22,10 @@ Header styling
 	border-bottom-width: 1px;
 }
 
-/*
-Main content styling
-*/
+/* Opening menu */
 
 .introcontent {
-	margin-bottom: 15px;
+	margin-bottom: 40px;
 }
 
 .menu-text {
@@ -51,4 +42,26 @@ Main content styling
 	color: black;
 	letter-spacing: 3px;
 	cursor: pointer;
+}
+
+/* New company input form */
+
+.insert-block {
+	padding-bottom: 10px;
+	border-bottom: solid 1px #cecece;
+}
+
+.instructions {
+	font-weight: 200;
+	letter-spacing: 3px;
+}
+
+.newCo-row {
+	margin-bottom: 10px;
+}
+
+.company-input {
+	font-weight: 200;
+	color: #cecece;
+	letter-spacing: 3px;
 }
