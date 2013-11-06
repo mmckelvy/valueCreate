@@ -4,3 +4,7 @@ Minimalist and simple.
 USER INTERACTIONS
 Initial page should be very simple and intuitive.  Only a couple options for the user.  [Should I add a description on the site about what it actually does?]
 
+
+
+BUGS / FIXES / CHANGES
+Check font color in company input forms.

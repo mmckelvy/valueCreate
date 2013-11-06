@@ -46,9 +46,18 @@
 
 /* New company input form */
 
+#add-company-container {
+	opacity: 0;
+}
+
+#add-company-container.show {
+	opacity: 1;
+}
+
 .insert-block {
 	padding-bottom: 10px;
 	border-bottom: solid 1px #cecece;
+	-webkit-transition: opacity 1s ease-in;
 }
 
 .instructions {
@@ -62,6 +71,5 @@
 
 .company-input {
 	font-weight: 200;
-	color: #cecece;
 	letter-spacing: 3px;
 }
