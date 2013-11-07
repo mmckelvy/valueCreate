@@ -24,7 +24,7 @@ if ('development' == app.get('env')) {
 
 //Calls the route handler; connects to the relevant Mongo database.
 require('./routes/routelist.js')(app);
-mongoose.connect('mongodb://localhost/Data');
+mongoose.connect('mongodb://localhost/ValuationProject');
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
