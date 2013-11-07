@@ -1,5 +1,4 @@
 /* Title section */
-
 .title-area {
 	margin-top: 50px;
 	text-align: center;
@@ -23,7 +22,6 @@
 }
 
 /* Opening menu */
-
 .introcontent {
 	margin-bottom: 40px;
 }
@@ -45,7 +43,6 @@
 }
 
 /* New company input form */
-
 #add-company-container {
 	opacity: 0;
 }
@@ -72,4 +69,11 @@
 .company-input {
 	font-weight: 200;
 	letter-spacing: 3px;
+}
+
+.btn-sub {
+	font-weight: 200;
+	letter-spacing: 3px;
+	background-color: #686868;
+	color: #FFFFFF;
 }

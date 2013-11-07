@@ -1,19 +1,30 @@
 // var indexController = require('../controllers/index');
 var mongoose = require('mongoose');
 var User = require('../database/companies');
-// var Schema = mongoose.Schema;
 //Define routes.
 module.exports = function (app) {
-	//Route 1
+	// Render the home page.
 	app.get('/', function (req, res) {
 		res.render('index');
 	});
-	//Route 2
-	app.post('/receive', function (req, res) {
-		var inputData = req.body.tester;
-		console.log(inputData);
-		var banker = new User({name: inputData});
-		banker.save(res.send('Success'));
+	// Receive the new company form data.
+	app.post('/newcompany', function (req, res) {
+		// List of keys with non-numerical values.
+		var excludedKeys = {
+			companyName: 0
+		};		
+		var newCoData = req.body;
+		// Convert object values to floats if not in 'excludedKeys' object.
+		for (var key in newCoData) {
+			if (!(key in excludedKeys)) {
+				console.log('true');
+				newCoData[key] = parseFloat(newCoData[key]);
+			}
+		}
+		
+		res.send('Received');
 	});
 	//Route 3
 }; 
+
+

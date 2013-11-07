@@ -1,3 +1,4 @@
+<!-- New company input form -->
 <script id="newCo-template" type="text/x-handlebars-template">
 	<div id="add-company-container" class="insert-block">
 		<p class="instructions">
@@ -6,40 +7,48 @@
 		<form id="add-company-form">
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" id="company-name" class="form-control company-input" placeholder="company name">
+					<input type="text" name="companyName" class="form-control company-input" placeholder="company name">
+				</div>
+				<div class="col-xs-4">
+					<input type="text" name="targetReturns" class="form-control company-input" placeholder="target return">
 				</div>
 			</div>
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" id="beg-rev" class="form-control company-input" placeholder="base year revenue">
+					<input type="text" name="begRev" class="form-control company-input" placeholder="base year revenue">
 				</div>
 				<div class="col-xs-4">
-					<input type="text" id="cagr" class="form-control company-input" placeholder="5 year revenue cagr">
+					<input type="text" name="cagr" class="form-control company-input" placeholder="5 year revenue cagr">
 				</div>
 				<div class="col-xs-4">
-					<input type="text" id="margin" class="form-control company-input" placeholder="ebitda margin">
-				</div>
-			</div>
-			<div class="row newCo-row">
-				<div class="col-xs-4">
-					<input type="text" id="tax-rate" class="form-control company-input" placeholder="tax rate">
-				</div>
-				<div class="col-xs-4">
-					<input type="text" id="dep-amort" class="form-control company-input" placeholder="depreciation & amortization">
-				</div>
-				<div class="col-xs-4">
-					<input type="text" id="capex" class="form-control company-input" placeholder="capital expenditures">
+					<input type="text" name="margin" class="form-control company-input" placeholder="ebitda margin">
 				</div>
 			</div>
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" id="nwc-days" class="form-control company-input" placeholder="working capital days">
+					<input type="text" name="depAmort" class="form-control company-input" placeholder="depreciation & amortization">
 				</div>
 				<div class="col-xs-4">
-					<input type="text" id="net-debt" class="form-control company-input" placeholder="net debt">
+					<input type="text" name="capex" class="form-control company-input" placeholder="capital expenditures">
 				</div>
 				<div class="col-xs-4">
-				<input type="text" id="interest" class="form-control company-input" placeholder="interest rate">
+					<input type="text" name="nwcDays" class="form-control company-input" placeholder="working capital days">
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="text" name="debt" class="form-control company-input" placeholder="debt financing">
+				</div>
+				<div class="col-xs-4">
+				<input type="text" name="interestRate" class="form-control company-input" placeholder="cost of debt">
+				</div>
+				<div class="col-xs-4">
+					<input type="text" name="taxRate" class="form-control company-input" placeholder="tax rate">
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<button type="submit" class="btn btn-default btn-sub">Submit</button>
 				</div>
 			</div>
 		</form>
