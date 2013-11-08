@@ -1,6 +1,4 @@
 // Calculates cumulative free cash flow.
-
-
 var freeCashFlowCalc = function (baseRev, cagr, margin, depAmort, capEx, nwcDays, debt, interestRate, taxRate) {
 	// Calculate beginning period values.
 	var begDebt = debt;
@@ -21,3 +19,10 @@ var freeCashFlowCalc = function (baseRev, cagr, margin, depAmort, capEx, nwcDays
 	// Calculate free cash flow
 	return Math.round(ebt - taxes + depreciation - capitalExpenditures + changeNwc);
 };
+
+var beginningEquity = function (baseRev, cagr, margin, debt, fcf, targetReturns, exitMultiple) {
+	var exitEbitda = baseRev * Math.pow(1 + cagr, 5) * margin;
+	var terminalValue = exitEbitda * exitMultiple;
+	var discountFactor = Math.pow(1 + targetReturns, 5);
+	return terminalValue / discountFactor;
+}
