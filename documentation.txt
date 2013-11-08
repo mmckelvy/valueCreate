@@ -9,3 +9,4 @@ Initial page should be very simple and intuitive.  Only a couple options for the
 BUGS / FIXES / CHANGES
 Check font color in company input forms.
 Add descriptions for new company inputs.
+Decide how to round the number outputs

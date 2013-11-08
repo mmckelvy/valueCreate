@@ -1,4 +1,5 @@
 $(function () {
+	
 	// On click of the 'new company' text, render a new company input form via Handlebars.
 	$('.introcontent').on('click', '#newCo', function (e) {
 		if ($('#add-company-container').length === 0) { 
@@ -12,6 +13,7 @@ $(function () {
 			},0);
 		}
 	});		
+	
 	// On click of the submit form, send the form data to the server.
 	$('.maincontent').on('submit', '#add-company-form', function (e) {
 		e.preventDefault();

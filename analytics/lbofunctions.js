@@ -30,14 +30,19 @@ var freeCashFlowCalc = function (baseRev, cagr, margin, depAmort, capEx, nwcDays
 		// Add the period free cash flow to the total
 		cumFcf += fcf;
 	}
-	
 	return cumFcf;
 };
+
 // Calculate beginning equity value.
-var beginningEquity = function (baseRev, cagr, margin, debt, fcf, targetReturns, exitMultiple) {
+var beginningEquityCalc = function (baseRev, cagr, margin, debt, fcf, targetReturns, exitMultiple) {
 	var exitEbitda = baseRev * Math.pow(1 + cagr, 5) * margin;
 	var terminalValue = exitEbitda * exitMultiple;
-	var discountFactor = Math.pow(1 + targetReturns, 5);
+	var numerator = terminalValue - (debt - fcf);
+	var denominator = Math.pow(1 + targetReturns, 5);
 	
-	return terminalValue / discountFactor;
+	return numerator / denominator;
+};
+
+var enterpriseValueCalc = function (begEquity, debt) {
+	return begEquity + debt;
 };

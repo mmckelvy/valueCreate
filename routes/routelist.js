@@ -1,6 +1,7 @@
 // var indexController = require('../controllers/index');
 var mongoose = require('mongoose');
 var Company = require('../database/companies');
+
 //Define routes.
 module.exports = function (app) {
 	// Render the home page.
