@@ -9,7 +9,7 @@ describe("freeCashFlowCalc", function() {
 		var debt = 25;
 		var interestRate = 0.06;
 		var taxRate = 0.4;
-	expect(freeCashFlowCalc(baseRev, cagr, margin, depAmort, capEx, nwcDays, debt, interestRate, taxRate)).toEqual(13);
+	expect(freeCashFlowCalc(baseRev, cagr, margin, depAmort, capEx, nwcDays, debt, interestRate, taxRate)).toEqual(73.550);
   });
 
 });
