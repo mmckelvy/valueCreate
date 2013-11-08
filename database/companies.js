@@ -10,7 +10,7 @@ var companySchema = new Schema ({
 	cagr: Number,
 	margin: Number,
 	depAmort: Number,
-	capex: Number,
+	capEx: Number,
 	nwcDays: Number,
 	debt: Number,
 	interestRate: Number,
