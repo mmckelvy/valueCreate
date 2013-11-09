@@ -18,14 +18,15 @@ module.exports = function (app) {
 		// Convert object string values to floats if not in 'excludedKeys' object.
 		for (var key in newCoData) {
 			if (!(key in excludedKeys)) {
-				console.log('true');
 				newCoData[key] = parseFloat(newCoData[key]);
 			}
 		}
-		console.log(newCoData);
 		var newCompany = new Company (newCoData);
+		console.log(newCompany.freeCashFlowCalc());
+		console.log(newCompany.enterpriseValueCalc());
+		console.log(newCompany.ebitdaSourceReturns());
 		newCompany.save();
-
+		// Call the freeCashFlowCalc method
 		// ultimately going to send back a page with the valuation.
 		res.send('Received');
 	});
