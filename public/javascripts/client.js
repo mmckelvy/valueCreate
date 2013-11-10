@@ -17,10 +17,19 @@ $(function () {
 	// On click of the submit form, send the form data to the server.
 	$('.maincontent').on('submit', '#add-company-form', function (e) {
 		e.preventDefault();
-		console.log('test');
 		$.post ('/newcompany', $('#add-company-form').serialize(), function (data) {
-			console.log($('#add-company-form').serialize());
-			console.log(data);
+			$('#add-company-form').serialize();
+			// Receive calculations from the server.  Create new object to hold this data.
+			var results = data;
+			console.log(results);
 		});
+		// Clear and hide the form.
+		// Create a chart. [should be a function].
+		$('#add-company-container').addClass('animated flipOutX');
+		setTimeout( function () {
+			$('#add-company-container').empty();
+		}, 1000);
 	});
+
+
 });

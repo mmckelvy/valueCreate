@@ -22,7 +22,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//Calls the route handler; connects to the relevant Mongo database.
+// Call the route handler; connect to the relevant Mongo database.
 require('./routes/routelist.js')(app);
 mongoose.connect('mongodb://localhost/ValuationProject');
 

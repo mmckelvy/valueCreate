@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Create the user schema.
+// Create the company schema.
 var companySchema = new Schema ({
 	companyName: String,
 	targetReturns: Number,
@@ -18,15 +18,17 @@ var companySchema = new Schema ({
 	taxRate: Number
 });
 
+// Returns company's cumulative free cash flow and final year EBITDA.
 companySchema.methods.freeCashFlowCalc = function () {
-	// Calculate beginning period values.
+	// Calculate beginning period values.  Assumes a five year hold.
+	var periods = 5;
 	var begDebt = this.debt;
 	var begNwc = this.nwcDays / 365 * this.baseRev;
 	var begRevenue = this.baseRev;
 	var cumFcf = 0;
-	// Calculate current period values.  Assumes a five year hold.
+	// Calculate current period values.
 	var baseRev = this.baseRev;
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < periods; i++) {
 		var currentRev = baseRev * (1 + this.cagr);
 		var ebitda = currentRev * this.margin;
 		var depreciation = currentRev * this.depAmort;
@@ -56,23 +58,38 @@ companySchema.methods.freeCashFlowCalc = function () {
 	}
 };
 
-companySchema.methods.enterpriseValueCalc = function () {
+// Returns company's key value metrics: entry enterprise value, entry equity, and ending equity.
+companySchema.methods.valueCalc = function () {
 	var fcf = this.freeCashFlowCalc().cumFcf;
-	var exitEbitda = this.baseRev * Math.pow(1 + this.cagr, 5) * this.margin;
-	var terminalValue = exitEbitda * this.exitMultiple;
-	var numerator = terminalValue - (this.debt - fcf);
+	var terminalEbitda = this.freeCashFlowCalc().terminalEbitda;
+	var terminalValue = terminalEbitda * this.exitMultiple;
+	var endEquity = terminalValue - (this.debt - fcf);
 	var denominator = Math.pow(1 + this.targetReturns, 5);
-	var begEquity = numerator / denominator;
+	var begEquity = endEquity / denominator;
 	
-	return begEquity + this.debt;
+	return {
+		tev: begEquity + this.debt,
+		endEquity: endEquity,
+		begEquity: begEquity
+	}
 };
 
+// Returns EBITDA contribution to equity growth.
 companySchema.methods.ebitdaSourceReturns = function () {
 	var terminalEbitda = this.freeCashFlowCalc().terminalEbitda;
 	var entryEbitda = this.baseRev * this.margin;
 	var difference = terminalEbitda - entryEbitda;
 	
 	return difference * this.exitMultiple;
+};
+
+// Returns the multiple expansion contribution to equity growth
+companySchema.methods.multipleSourceReturns = function () {
+	var tev = this.valueCalc().tev;
+	var entryEbitda = this.baseRev * this.margin;
+	var entryMultiple = tev / entryEbitda;
+	
+	return (this.exitMultiple - entryMultiple) * entryEbitda;
 };
 
 // Create the User model with the user schema.
