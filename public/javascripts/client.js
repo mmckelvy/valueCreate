@@ -1,16 +1,31 @@
 $(function () {
 	
+	// RENDERING
+	var renderInputForm = function () {
+		var templateSource = $('#newCo-template').html();
+		var renderTemplate = Handlebars.compile(templateSource);
+		var rendered = renderTemplate({});
+		$('.maincontent').append(rendered);
+	};
+	
+	var showInputForm = function (displayElement, focusElement) {
+		displayElement.addClass('show');
+		focusElement.focus();
+	};
+
+	// EVENTS
 	// On click of the 'new company' text, render a new company input form via Handlebars.
 	$('.introcontent').on('click', '#newCo', function (e) {
 		if ($('#add-company-container').length === 0) { 
-			var templateSource = $('#newCo-template').html();
-			var renderTemplate = Handlebars.compile(templateSource);
-			var rendered = renderTemplate({});
-			$('.maincontent').append(rendered);
-			setTimeout(function () {
-				$('#add-company-container').addClass('show');
-				$('#company-name').focus();
-			},0);
+			renderInputForm();
+			// setTimeout(function () {
+			// 	$('#add-company-container').addClass('show');
+			// 	$('#company-name').focus();
+			// },0);
+			setTimeout( function () {
+				showInputForm($('#add-company-container'), $('#first-input')); 
+				// $('#company-name').focus();
+			}, 0 );
 		}
 	});		
 	
@@ -31,5 +46,5 @@ $(function () {
 		}, 1000);
 	});
 
-
+	
 });

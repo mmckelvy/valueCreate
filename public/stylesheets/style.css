@@ -1,3 +1,13 @@
+/* Function styles */
+.downlow {
+	opacity: 0;
+}
+
+.show {
+	opacity: 1;
+}
+
+
 /* Title section */
 .title-area {
 	margin-top: 50px;
@@ -43,18 +53,19 @@
 }
 
 /* New company input form */
-#add-company-container {
+/*#add-company-container {
 	opacity: 0;
 }
 
 #add-company-container.show {
 	opacity: 1;
-}
+}*/
 
 .insert-block {
 	padding-bottom: 10px;
 	border-bottom: solid 1px #cecece;
 	-webkit-transition: opacity 1s ease-in;
+
 }
 
 .instructions {
