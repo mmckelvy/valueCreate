@@ -28,8 +28,16 @@ $(function () {
                 type: 'waterfall'
             },
 
+            credits: {
+                enabled: false
+            },
+            
+            exporting: {
+                enabled: false
+            },
+
             title: {
-                text: 'Sources of Return'
+                text: ''
             },
 
             xAxis: {
@@ -37,8 +45,12 @@ $(function () {
             },
 
             yAxis: {
+                gridLineWidth: 0,
                 title: {
                     text: ''
+                },
+                labels: {
+                    enabled: false
                 }
             },
 
@@ -50,29 +62,45 @@ $(function () {
                 pointFormat: '<b>${point.y:,.2f}</b> USD'
             },
 
+            plotOptions: {
+                series: {
+                    borderWidth: 0
+                }
+            },
+
             series: [{
-                upColor: '#686868',
+                color: '#B2E0C2',
                 data: [{
-                    name: 'Beginning Equity',
-                    y: 120000
+                    name: 'beginning equity',
+                    y: 12000000,
+                    color: '#cecece'
                 }, 
                 {
-                    name: 'EBITDA growth',
-                    y: 569000
+                    name: 'ebitda growth',
+                    y: 56900000
                 }, 
                 {
-                    name: 'Free Cash Flow Generation',
-                    y: 231000
-                }]
+                    name: 'fcf generation',
+                    y: 70000000
+                }, 
+                {
+                    name: 'multiple expansion',
+                    y: 40000000
+                }, 
+                {
+                    name: 'ending equity',
+                    isSum: true,
+                    color: '#cecece'
+                }],
+                
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                     formatter: function () {
-                        return Highcharts.numberFormat(this.y / 1000, 0, ',');
+                        return Highcharts.numberFormat(this.y / 1000000, 0, ',');
                     },
                     style: {
-                        color: '#FFFFFF',
-                        fontWeight: '200',
-                        textShadow: '0px 0px 3px black'
+                        color: '#000000',
+                        fontWeight: '400'
                     }
                 },
                 pointPadding: 0

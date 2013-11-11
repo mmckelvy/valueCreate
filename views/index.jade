@@ -15,15 +15,18 @@ html
 				span#existingCo.menu-text existing company
 				span#about.menu-text about
 			div.maincontent
+		#container(style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto")
 
 		include templates.html
 
 		script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-		script(src='/javascripts/client.js')
-		script(src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js')
-		script(src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js')
-		script(src='//cdnjs.cloudflare.com/ajax/libs/highcharts/3.0.2/highcharts.js')
+		script(src='http://code.highcharts.com/highcharts.js')
 		script(src='http://code.highcharts.com/highcharts-more.js')
+		script(src='http://code.highcharts.com/modules/exporting.js')
+		script(src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js')
+
+		script(src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js')
+		script(src='/javascripts/client.js')
 
 
 
