@@ -12,8 +12,8 @@ $(function () {
 		displayElement.addClass('show');
 		focusElement.focus();
     	};
-	
-    var createChart = function (container, data) {
+
+    var createChart = function (container, results) {
         Highcharts.setOptions({
             chart: {
                 style: {
@@ -59,7 +59,7 @@ $(function () {
             },
 
             tooltip: {
-                pointFormat: '<b>${point.y:,.2f}</b> USD'
+                enabled: false
             },
 
             plotOptions: {
@@ -72,20 +72,20 @@ $(function () {
                 color: '#B2E0C2',
                 data: [{
                     name: 'beginning equity',
-                    y: 12000000,
+                    y: results.begEquity,
                     color: '#cecece'
                 }, 
                 {
                     name: 'ebitda growth',
-                    y: 56900000
+                    y: results.ebitdaSourceReturns
                 }, 
                 {
                     name: 'fcf generation',
-                    y: 70000000
+                    y: results.freeCashFlow
                 }, 
                 {
                     name: 'multiple expansion',
-                    y: 40000000
+                    y: results.multipleSourceReturns
                 }, 
                 {
                     name: 'ending equity',
@@ -96,7 +96,7 @@ $(function () {
                 dataLabels: {
                     enabled: true,
                     formatter: function () {
-                        return Highcharts.numberFormat(this.y / 1000000, 0, ',');
+                        return Highcharts.numberFormat(this.y, 0, ',');
                     },
                     style: {
                         color: '#000000',
@@ -107,6 +107,12 @@ $(function () {
             }]
         });
     };
+    
+    // DATA PROCESSING
+    var getData = function (data) {
+        return data;
+    };
+
     // EVENTS
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {
@@ -122,15 +128,13 @@ $(function () {
     
     $('.maincontent').on('submit', '#add-company-form', function (e) {
         e.preventDefault();
-        $.post ('/newcompany', $('#add-company-form').serialize(), function (data) {
-            $('#add-company-form').serialize();
+        $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  Create new object to hold this data.
-            var results = data;
             console.log(results);
+            $('.maincontent').empty();
+            renderElements($('#results-template'));
+            createChart($('#chart-container'), results);
         });
 
-        $('.maincontent').empty();
-        renderElements($('#chart-template'));
-        createChart($('#chart1-container'));
     });
 });
