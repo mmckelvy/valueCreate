@@ -25,13 +25,14 @@ module.exports = function (app) {
 		// Create a new model instance with the data.
 		var newCompany = new Company (newCoData);
 		// Create a new object with results of object method calls.
+		var valueResult = newCompany.valueCalc();
 		var newCoResults = {
-			freeCashFlow: newCompany.freeCashFlowCalc().cumFcf,
-			tev: newCompany.valueCalc().tev,
-			endEquity: newCompany.valueCalc().endEquity,
-			begEquity: newCompany.valueCalc().begEquity,
-			ebitdaSourceReturns: newCompany.ebitdaSourceReturns(),
-			multipleSourceReturns: newCompany.multipleSourceReturns()		
+			freeCashFlow: Math.round(newCompany.freeCashFlowCalc().cumFcf * 10) / 10,
+			tev: Math.round(valueResult.tev * 10) / 10,
+			endEquity: Math.round(valueResult.endEquity * 10) / 10,
+			begEquity: Math.round(valueResult.begEquity * 10) / 10,
+			ebitdaSourceReturns: Math.round(newCompany.ebitdaSourceReturns() * 10) / 10,
+			multipleSourceReturns: Math.round(newCompany.multipleSourceReturns() * 10) / 10		
 		};
 		newCompany.save();
 		// Send results back to the client.

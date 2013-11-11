@@ -1,10 +1,10 @@
 $(function () {
 	
 	// RENDERING
-	var renderElements = function (template) {
+	var renderElements = function (template, data) {
 		var templateSource = template.html();
 		var renderTemplate = Handlebars.compile(templateSource);
-		var rendered = renderTemplate({});
+		var rendered = renderTemplate(data);
 		$('.maincontent').append(rendered);
 	};
 	
@@ -108,11 +108,6 @@ $(function () {
         });
     };
     
-    // DATA PROCESSING
-    var getData = function (data) {
-        return data;
-    };
-
     // EVENTS
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {
@@ -124,15 +119,14 @@ $(function () {
         }
     });     
     
-    // On click of the submit form, send the form data to the server.
-    
+    // On click of the submit form, send the form data to the server, then render the valuation results (received from server).
     $('.maincontent').on('submit', '#add-company-form', function (e) {
         e.preventDefault();
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  Create new object to hold this data.
             console.log(results);
             $('.maincontent').empty();
-            renderElements($('#results-template'));
+            renderElements($('#results-template'), results);
             createChart($('#chart-container'), results);
         });
 

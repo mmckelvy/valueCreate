@@ -12,3 +12,4 @@ Add descriptions for new company inputs.
 Decide how to round the number outputs.
 Change unit tests to use mongoose page, not lbofunctions file.
 Add animations
+Add footer
