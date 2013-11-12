@@ -111,6 +111,7 @@ $(function () {
     // EVENTS
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {
+        $('.maincontent').empty();
         if ($('#add-company-container').length === 0) { 
             renderElements($('#newCo-template'));
             setTimeout( function () {
@@ -129,6 +130,15 @@ $(function () {
             renderElements($('#results-template'), results);
             createChart($('#chart-container'), results);
         });
-
     });
+
+    // On click of 'existing company' text, get the available companies from server, render in a form.
+    $('.introcontent').on('click', '#existingCo', function (e) {
+        // Make an ajax call to get list of companies
+        $.get ('/existingcompany', null, function (results) {
+            //render company form here.
+            console.log(results);
+        });
+    });
+
 });

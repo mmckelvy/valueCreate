@@ -1,4 +1,4 @@
-// var indexController = require('../controllers/index');
+var utilities = require('../utilities/utility');
 var mongoose = require('mongoose');
 var Company = require('../database/companies');
 
@@ -38,7 +38,20 @@ module.exports = function (app) {
 		// Send results back to the client.
 		res.send(newCoResults);
 	});
-	//Route 3
+	// Send client a list of all existing companies.
+	app.get('/existingcompany', function (req, res) {
+		console.log(utilities);
+		var check = req.query;
+		// Get all the items in the database, send back to client
+		Company.find({}, function (err, companies) {
+			if (err) {console.log('there was an error')}
+			var namesList = utilities.map(companies, function (obj) {
+				return obj.companyName;
+			});
+			
+			res.send(namesList);
+		});
+	});
 }; 
 
 

@@ -92,7 +92,7 @@ companySchema.methods.multipleSourceReturns = function () {
 	return (this.exitMultiple - entryMultiple) * entryEbitda;
 };
 
-// Create the User model with the user schema.
+// Create the Company model with the companySchema schema.
 var Company = mongoose.model('Company', companySchema);
 module.exports = Company;
  
