@@ -8,10 +8,9 @@ $(function () {
 		$('.maincontent').append(rendered);
 	};
 	
-	var showElements = function (displayElement, focusElement) {
+	var showElements = function (displayElement) {
 		displayElement.addClass('show');
-		focusElement.focus();
-    	};
+	};
 
     var createChart = function (container, results) {
         Highcharts.setOptions({
@@ -115,7 +114,8 @@ $(function () {
         if ($('#add-company-container').length === 0) { 
             renderElements($('#newCo-template'));
             setTimeout( function () {
-                showElements($('#add-company-container'), $('#first-input')); 
+                showElements($('#add-company-container'));
+                $('#first-input').focus(); 
             }, 0 );
         }
     });     
@@ -134,10 +134,17 @@ $(function () {
 
     // On click of 'existing company' text, get the available companies from server, render in a form.
     $('.introcontent').on('click', '#existingCo', function (e) {
+        $('.maincontent').empty();
         // Make an ajax call to get list of companies
         $.get ('/existingcompany', null, function (results) {
             //render company form here.
-            console.log(results);
+            console.log({results: results});
+            if ($('#existing-company-container').length === 0) {
+                renderElements($('#existingList-template'), { results: results });
+                setTimeout( function () {
+                    showElements($('#existing-company-container'));
+                }, 0);
+            }
         });
     });
 

@@ -2,7 +2,7 @@
 <script id="newCo-template" type="text/x-handlebars-template">
 	<div id="add-company-container" class="insert-block downlow">
 		<p class="instructions">
-			Enter the following:
+			Enter the following ($ in millions):
 		</p>
 		<form id="add-company-form">
 			<div class="row newCo-row">
@@ -75,6 +75,21 @@
 				<div id="chart-container"></div>
 			</div>
 		</div>
+	</div>
+</script>
+
+<script id="existingList-template" type="text/x-handlebars-template">
+	<div id="existing-company-container" class="insert-block downlow">
+		<p class="instructions">
+			Select a company:
+		</p>
+		<ul class="existing-list">
+			{{#each results}}
+				<li>{{this}}</li>
+			{{else}}
+				<li>No companies available</li>
+			{{/each}}
+		</ul>
 	</div>
 </script>
 
