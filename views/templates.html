@@ -72,7 +72,7 @@
 				</div>
 			</div>
 			<div class="col-xs-6">
-				<span class="results-titles">sources of returns ($mm)</span>
+				<span class="results-titles">sources of value ($mm)</span>
 				<div id="chart-container"></div>
 			</div>
 		</div>
@@ -91,6 +91,24 @@
 				<li>No companies available</li>
 			{{/each}}
 		</ul>
+	</div>
+</script>
+
+<script id="about-template" type="text/x-handlebars-template">
+	<div id="about-container" class="downlow">
+		<p class="lots-text">
+			<span class="about-category">what it is: </span>value|create is a fully functional valuation model packaged in a web application.
+			It allows you to quickly compute a company's value using a minimal number of standard financial inputs.
+		</p>
+		<p class="lots-text">
+		<span class="about-category">how it works: </span>Fill in the "new company" input form with your company's characteristics.  Click submit.  The value of your company will be returned along with a graphical breakdown of the key value contributors.  If you want to access a company you have already created, click the "existing company" link and select your desired company.
+		</p>
+		<p class="lots-text">
+			<span class="about-category">valuation methodology: </span>value|create uses the "buyout" valuation method.  It calculates the hypothetical equity value of a company at the end of a 5 year hold period and then solves for the entry enterprise value that produces that hypothetical ending equity value within the given "return" (e.g. 25% IRR) constraints.  This is the standard valuation method employed by venture capital and private equity firms.           
+		</p>
+		<p class="lots-text">
+			<span class="about-category">who it's for: </span>value|create is for business owners, investment bankers, private equity professionals, venture capital professionals, and anyone who wants to better understand the value of a given business.  It's perfect for quickly getting a sense of a company's worth ahead of a pitch, indication of interest, or even real time during meetings and negotiations.                 
+		</p>
 	</div>
 </script>
 

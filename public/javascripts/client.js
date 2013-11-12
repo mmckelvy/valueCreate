@@ -160,4 +160,13 @@ $(function () {
         });
     });
 
+    $('.introcontent').on('click', '#about', function (e) {
+        $('.maincontent').empty();
+        if ($('#about-container').length === 0) { 
+            renderElements($('#about-template'));
+            setTimeout( function () {
+                showElements($('#about-container'));
+            }, 0 );
+        }
+    })
 });
