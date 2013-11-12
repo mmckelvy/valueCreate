@@ -153,13 +153,17 @@
 
 /* Footer */
 .page-closing {
-	border-top: solid 1px #cecece;
 	position: fixed;
 	bottom: 0;
-	padding-bottom: 10px;
-	width: 60%;
-	background-color: #FFFFFF;
+	width: 100%;
+}
 
+.inner-footer {
+	border-top: solid 1px #cecece;
+	padding-bottom: 10px;
+	padding-left: 0px;	
+	margin: auto;
+	background-color: #FFFFFF;
 }
 
 .closing-text {
