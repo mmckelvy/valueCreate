@@ -140,11 +140,23 @@ $(function () {
             //render company form here.
             console.log({results: results});
             if ($('#existing-company-container').length === 0) {
-                renderElements($('#existingList-template'), { results: results });
+                renderElements($('#existingList-template'), {results: results});
                 setTimeout( function () {
                     showElements($('#existing-company-container'));
                 }, 0);
             }
+        });
+    });
+
+    // On click of particular company, send value of company clicked to the server.
+    $('.maincontent').on('click', '.clickable', function (e) {
+        var queryItem = $(this).attr('name');
+        $.get ('/findexisting', {queryItem: queryItem}, function (results) {
+            // Render chart and valuation with results
+            console.log(results);
+            $('.maincontent').empty();
+            renderElements($('#results-template'), results);
+            createChart($('#chart-container'), results);
         });
     });
 

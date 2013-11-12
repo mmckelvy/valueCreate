@@ -40,8 +40,6 @@ module.exports = function (app) {
 	});
 	// Send client a list of all existing companies.
 	app.get('/existingcompany', function (req, res) {
-		console.log(utilities);
-		var check = req.query;
 		// Get all the items in the database, send back to client
 		Company.find({}, function (err, companies) {
 			if (err) {console.log('there was an error')}
@@ -50,6 +48,28 @@ module.exports = function (app) {
 			});
 			
 			res.send(namesList);
+		});
+	});
+
+	// Query database for existing name, calculate valuations for that company, send result back to client.
+	app.get('/findexisting', function (req, res) {
+		var criteria = req.query.queryItem;
+		console.log(criteria);
+
+		Company.findOne({companyName: criteria}, function (err, queriedCompany) {
+			if (err) {console.log('there was an error')}
+			// Calculate the valuation and package results in an object for transmission to client.
+			var valueResult = queriedCompany.valueCalc();
+			var queryCoResults = {
+				freeCashFlow: Math.round(queriedCompany.freeCashFlowCalc().cumFcf * 10) / 10,
+				tev: Math.round(valueResult.tev * 10) / 10,
+				endEquity: Math.round(valueResult.endEquity * 10) / 10,
+				begEquity: Math.round(valueResult.begEquity * 10) / 10,
+				ebitdaSourceReturns: Math.round(queriedCompany.ebitdaSourceReturns() * 10) / 10,
+				multipleSourceReturns: Math.round(queriedCompany.multipleSourceReturns() * 10) / 10		
+			};
+			
+			res.send(queryCoResults);
 		});
 	});
 }; 

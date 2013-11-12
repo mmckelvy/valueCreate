@@ -116,3 +116,23 @@
 	font-weight: 700;
 	letter-spacing: 3px;
 }
+
+.existing-list {
+	list-style-type: none;
+	padding: 0;
+	font-weight: 200;
+	letter-spacing: 3px;
+}
+
+.clickable {
+	color: #cecece;
+}
+
+.clickable:hover {
+	color: black;
+	cursor: pointer;
+}
+
+
+
+
