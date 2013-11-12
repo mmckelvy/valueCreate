@@ -27,6 +27,7 @@ module.exports = function (app) {
 		// Create a new object with results of object method calls.
 		var valueResult = newCompany.valueCalc();
 		var newCoResults = {
+			companyName: newCompany.companyName,
 			freeCashFlow: Math.round(newCompany.freeCashFlowCalc().cumFcf * 10) / 10,
 			tev: Math.round(valueResult.tev * 10) / 10,
 			endEquity: Math.round(valueResult.endEquity * 10) / 10,
@@ -61,6 +62,7 @@ module.exports = function (app) {
 			// Calculate the valuation and package results in an object for transmission to client.
 			var valueResult = queriedCompany.valueCalc();
 			var queryCoResults = {
+				companyName: queriedCompany.companyName,
 				freeCashFlow: Math.round(queriedCompany.freeCashFlowCalc().cumFcf * 10) / 10,
 				tev: Math.round(valueResult.tev * 10) / 10,
 				endEquity: Math.round(valueResult.endEquity * 10) / 10,
