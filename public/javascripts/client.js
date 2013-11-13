@@ -125,7 +125,6 @@ $(function () {
         e.preventDefault();
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  Create new object to hold this data.
-            console.log(results);
             $('.maincontent').empty();
             renderElements($('#results-template'), results);
             createChart($('#chart-container'), results);
@@ -138,7 +137,6 @@ $(function () {
         // Make an ajax call to get list of companies
         $.get ('/existingcompany', null, function (results) {
             //render company form here.
-            console.log({results: results});
             if ($('#existing-company-container').length === 0) {
                 renderElements($('#existingList-template'), {results: results});
                 setTimeout( function () {
@@ -153,7 +151,6 @@ $(function () {
         var queryItem = $(this).attr('name');
         $.get ('/findexisting', {queryItem: queryItem}, function (results) {
             // Render chart and valuation with results
-            console.log(results);
             $('.maincontent').empty();
             renderElements($('#results-template'), results);
             createChart($('#chart-container'), results);

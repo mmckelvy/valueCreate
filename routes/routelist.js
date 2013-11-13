@@ -43,7 +43,7 @@ module.exports = function (app) {
 	app.get('/existingcompany', function (req, res) {
 		// Get all the items in the database, send back to client
 		Company.find({}, function (err, companies) {
-			if (err) {console.log('there was an error')}
+			if (err) {res.send('there was an error')}
 			var namesList = utilities.map(companies, function (obj) {
 				return obj.companyName;
 			});
@@ -55,10 +55,9 @@ module.exports = function (app) {
 	// Query database for existing name, calculate valuations for that company, send result back to client.
 	app.get('/findexisting', function (req, res) {
 		var criteria = req.query.queryItem;
-		console.log(criteria);
 
 		Company.findOne({companyName: criteria}, function (err, queriedCompany) {
-			if (err) {console.log('there was an error')}
+			if (err) {res.send('there was an error')}
 			// Calculate the valuation and package results in an object for transmission to client.
 			var valueResult = queriedCompany.valueCalc();
 			var queryCoResults = {
