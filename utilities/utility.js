@@ -9,9 +9,4 @@ var map = function (items, f) {
 	return output;
 };
 
-var getValues = function (obj, key) {
-	return obj[key];
-};
-
 exports.map = map;
-exports.getValues = getValues;
