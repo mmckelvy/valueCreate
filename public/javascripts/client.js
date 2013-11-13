@@ -165,5 +165,10 @@ $(function () {
                 showElements($('#about-container'));
             }, 0 );
         }
-    })
+    });
+
+    $('.introcontent').on('click', '#clear', function (e) {
+        $('.maincontent').empty();
+    });
+
 });
