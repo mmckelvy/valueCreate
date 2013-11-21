@@ -25,16 +25,7 @@ module.exports = function (app) {
 		// Create a new model instance with the data.
 		var newCompany = new Company (newCoData);
 		// Create a new object with results of object method calls.
-		var valueResult = newCompany.valueCalc();
-		var newCoResults = {
-			companyName: newCompany.companyName,
-			freeCashFlow: Math.round(newCompany.freeCashFlowCalc().cumFcf * 10) / 10,
-			tev: Math.round(valueResult.tev * 10) / 10,
-			endEquity: Math.round(valueResult.endEquity * 10) / 10,
-			begEquity: Math.round(valueResult.begEquity * 10) / 10,
-			ebitdaSourceReturns: Math.round(newCompany.ebitdaSourceReturns() * 10) / 10,
-			multipleSourceReturns: Math.round(newCompany.multipleSourceReturns() * 10) / 10		
-		};
+		var newCoResults = newCompany.getResults();
 		newCompany.save();
 		// Send results back to the client.
 		res.send(newCoResults);
@@ -59,16 +50,7 @@ module.exports = function (app) {
 		Company.findOne({companyName: criteria}, function (err, queriedCompany) {
 			if (err) {res.send('there was an error')}
 			// Calculate the valuation and package results in an object for transmission to client.
-			var valueResult = queriedCompany.valueCalc();
-			var queryCoResults = {
-				companyName: queriedCompany.companyName,
-				freeCashFlow: Math.round(queriedCompany.freeCashFlowCalc().cumFcf * 10) / 10,
-				tev: Math.round(valueResult.tev * 10) / 10,
-				endEquity: Math.round(valueResult.endEquity * 10) / 10,
-				begEquity: Math.round(valueResult.begEquity * 10) / 10,
-				ebitdaSourceReturns: Math.round(queriedCompany.ebitdaSourceReturns() * 10) / 10,
-				multipleSourceReturns: Math.round(queriedCompany.multipleSourceReturns() * 10) / 10		
-			};
+			var queryCoResults = queriedCompany.getResults();
 			
 			res.send(queryCoResults);
 		});

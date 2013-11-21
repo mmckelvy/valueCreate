@@ -92,6 +92,19 @@ companySchema.methods.multipleSourceReturns = function () {
 	return (this.exitMultiple - entryMultiple) * entryEbitda;
 };
 
+// Call necessary functions, package up the result in an object that is ready to be transmitted to the client.
+companySchema.methods.getResults = function () {
+	return {
+		companyName: this.companyName,
+		freeCashFlow: Math.round(this.freeCashFlowCalc().cumFcf * 10) / 10,
+		tev: Math.round(this.valueCalc().tev * 10) / 10,
+		endEquity: Math.round(this.valueCalc().endEquity * 10) / 10,
+		begEquity: Math.round(this.valueCalc().begEquity * 10) / 10,
+		ebitdaSourceReturns: Math.round(this.ebitdaSourceReturns() * 10) / 10,
+		multipleSourceReturns: Math.round(this.multipleSourceReturns() * 10) / 10
+	};
+};
+
 // Create the Company model with the companySchema schema.
 var Company = mongoose.model('Company', companySchema);
 module.exports = Company;
