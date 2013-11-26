@@ -2,6 +2,31 @@ var utilities = require('../utilities/utility');
 var mongoose = require('mongoose');
 var Company = require('../database/companies');
 
+// New company creation function
+var newCompanyProcessing = function (data) {
+	var excludedKeys = {
+			companyName: 0
+	};
+	if ( !(utilities.basicValidate(newCoData)) ) {
+			res.send("Please properly complete the form");
+		}
+	else {
+		for (var key in newCoData) {
+			if (!(key in excludedKeys)) {
+				newCoData[key] = parseFloat(newCoData[key]);
+			}
+		}
+		// Create a new model instance with the data.
+		var newCompany = new Company (newCoData);
+		// Create a new object with results of object method calls.
+		var newCoResults = newCompany.getResults();
+		newCompany.save();
+		// Send results back to the client.
+		res.send(newCoResults);
+	}
+};
+
+
 //Define routes.
 module.exports = function (app) {
 	// Render the home page.
@@ -16,6 +41,11 @@ module.exports = function (app) {
 			companyName: 0
 		};		
 		var newCoData = req.body;
+		// Check to make sure data received by the client is complete and able to be parsed.
+		if ( !(utilities.basicValidate(newCoData)) ) {
+			res.send("Please properly complete the form");
+		}
+
 		// Convert object string values to floats if not in 'excludedKeys' object.
 		for (var key in newCoData) {
 			if (!(key in excludedKeys)) {
