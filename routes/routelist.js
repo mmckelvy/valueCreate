@@ -2,27 +2,6 @@ var utilities = require('../utilities/utility');
 var mongoose = require('mongoose');
 var Company = require('../database/companies');
 
-// New company data processing function
-var newCoDataProcessing = function (clientData) {
-	var errorMsg = "There was an error, please try again";
-
-	var excludedKeys = {
-		companyName: 0
-	};
-	
-	if ( !(utilities.basicValidate(clientData)) ) {
-			return errorMsg;
-	}
-	else {
-		for (var key in clientData) {
-			if (!(key in excludedKeys)) {
-				clientData[key] = parseFloat(clientData[key]);
-			}
-		}
-		return clientData;
-	}
-};
-
 //Define routes.
 module.exports = function (app) {
 	// Render the home page.
@@ -32,14 +11,12 @@ module.exports = function (app) {
 	
 	app.post('/newcompany', function (req, res) {
 		var newCoData = req.body;
-		console.log(newCoData);
-		console.log(newCoDataProcessing(newCoData));
-		if ( newCoDataProcessing(newCoData) === "There was an error, please try again" ) {
-			res.send(newCoDataProcessing(newCoData));
+		if ( utilities.cleanData(newCoData) === "There was an error, please try again" ) {
+			res.send(utilities.cleanData(newCoData));
 		}
 		else {
 			// Create a new model instance with the data.
-			var newCompany = new Company (newCoDataProcessing(newCoData));
+			var newCompany = new Company (utilities.cleanData(newCoData));
 			// Create a new object with results of object method calls.
 			var newCoResults = newCompany.getResults();
 			newCompany.save();

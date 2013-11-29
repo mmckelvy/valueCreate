@@ -27,7 +27,7 @@ var cleanData = function (data) {
 		if ( !(key in excludedKeys) && isNaN(parseFloat(data[key])) ) {
 			return errorMsg;
 		}
-		else if ( !(key in excludedKeys) {
+		else if ( !(key in excludedKeys) ) {
 			data[key] = parseFloat(data[key])
 			return data;
 		}
@@ -55,6 +55,6 @@ var objValidate = function (criteriaObj, evalObj) {
 
 
 exports.map = map;
-exports.basicValidate = basicValidate;
+exports.cleanData = cleanData;
 exports.rangeValidate = rangeValidate;
 exports.objValidate = objValidate;
