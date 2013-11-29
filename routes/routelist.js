@@ -2,30 +2,26 @@ var utilities = require('../utilities/utility');
 var mongoose = require('mongoose');
 var Company = require('../database/companies');
 
-// New company creation function
-var newCompanyProcessing = function (data) {
+// New company data processing function
+var newCoDataProcessing = function (clientData) {
+	var errorMsg = "There was an error, please try again";
+
 	var excludedKeys = {
-			companyName: 0
+		companyName: 0
 	};
-	if ( !(utilities.basicValidate(newCoData)) ) {
-			res.send("Please properly complete the form");
-		}
+	
+	if ( !(utilities.basicValidate(clientData)) ) {
+			return errorMsg;
+	}
 	else {
-		for (var key in newCoData) {
+		for (var key in clientData) {
 			if (!(key in excludedKeys)) {
-				newCoData[key] = parseFloat(newCoData[key]);
+				clientData[key] = parseFloat(clientData[key]);
 			}
 		}
-		// Create a new model instance with the data.
-		var newCompany = new Company (newCoData);
-		// Create a new object with results of object method calls.
-		var newCoResults = newCompany.getResults();
-		newCompany.save();
-		// Send results back to the client.
-		res.send(newCoResults);
+		return clientData;
 	}
 };
-
 
 //Define routes.
 module.exports = function (app) {
@@ -34,31 +30,22 @@ module.exports = function (app) {
 		res.render('index');
 	});
 	
-	// Receive the new company form data.
 	app.post('/newcompany', function (req, res) {
-		// List of keys with non-numerical values.
-		var excludedKeys = {
-			companyName: 0
-		};		
 		var newCoData = req.body;
-		// Check to make sure data received by the client is complete and able to be parsed.
-		if ( !(utilities.basicValidate(newCoData)) ) {
-			res.send("Please properly complete the form");
+		console.log(newCoData);
+		console.log(newCoDataProcessing(newCoData));
+		if ( newCoDataProcessing(newCoData) === "There was an error, please try again" ) {
+			res.send(newCoDataProcessing(newCoData));
 		}
-
-		// Convert object string values to floats if not in 'excludedKeys' object.
-		for (var key in newCoData) {
-			if (!(key in excludedKeys)) {
-				newCoData[key] = parseFloat(newCoData[key]);
-			}
+		else {
+			// Create a new model instance with the data.
+			var newCompany = new Company (newCoDataProcessing(newCoData));
+			// Create a new object with results of object method calls.
+			var newCoResults = newCompany.getResults();
+			newCompany.save();
+			// Send results back to the client.
+			res.send(newCoResults);
 		}
-		// Create a new model instance with the data.
-		var newCompany = new Company (newCoData);
-		// Create a new object with results of object method calls.
-		var newCoResults = newCompany.getResults();
-		newCompany.save();
-		// Send results back to the client.
-		res.send(newCoResults);
 	});
 	// Send client a list of all existing companies.
 	app.get('/existingcompany', function (req, res) {

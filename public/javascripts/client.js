@@ -125,10 +125,15 @@ $(function () {
         e.preventDefault();
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  Create new object to hold this data.
-            console.log(results);
             $('.maincontent').empty();
-            renderElements($('#results-template'), results);
-            createChart($('#chart-container'), results);
+            console.log(results);
+            if (results === "There was an error, please try again") {
+                $('.maincontent').append(results);
+            }
+            else {
+                renderElements($('#results-template'), results);
+                createChart($('#chart-container'), results);
+            }
         });
     });
 

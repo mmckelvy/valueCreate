@@ -9,13 +9,29 @@ var map = function (items, f) {
 	return output;
 };
 
-var basicValidate = function (data) {
+var cleanData = function (data) {
+	var errorMsg = "There was an error, please try again";
+
+	// Check to make sure form submission is complete.
 	for (var key in data) {
-		if ( typeof data[key] === "undefined" || isNaN(parseFloat(data[key])) ) {
-			return false;
+		if ( typeof data[key] === "undefined" )
+			return errorMsg;
+	}
+	// Remove non-numerical keys from the parseFloat checking.
+	var excludedKeys = {
+		companyName: 0
+	};
+
+	for (var key in data) {
+		// Check to make sure values can be processes to floats.
+		if ( !(key in excludedKeys) && isNaN(parseFloat(data[key])) ) {
+			return errorMsg;
+		}
+		else if ( !(key in excludedKeys) {
+			data[key] = parseFloat(data[key])
+			return data;
 		}
 	}
-	return true;
 };
 
 var rangeValidate = function (min, max, value) {
