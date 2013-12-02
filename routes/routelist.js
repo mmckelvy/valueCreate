@@ -4,26 +4,27 @@ var Company = require('../database/companies');
 
 //Define routes.
 module.exports = function (app) {
+	
 	// Render the home page.
 	app.get('/', function (req, res) {
 		res.render('index');
 	});
 	
+	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
 	app.post('/newcompany', function (req, res) {
 		var newCoData = req.body;
 		if ( utilities.cleanData(newCoData) === "There was an error, please try again" ) {
 			res.send(utilities.cleanData(newCoData));
 		}
 		else {
-			// Create a new model instance with the data.
 			var newCompany = new Company (utilities.cleanData(newCoData));
-			// Create a new object with results of object method calls.
 			var newCoResults = newCompany.getResults();
 			newCompany.save();
-			// Send results back to the client.
+			
 			res.send(newCoResults);
 		}
 	});
+	
 	// Send client a list of all existing companies.
 	app.get('/existingcompany', function (req, res) {
 		// Get all the items in the database, send back to client

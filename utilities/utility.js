@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// Calls a function on each item in an array.
 var map = function (items, f) {
 	var output = [];
 	for(var i = 0, len = items.length; i < len; i++) {
@@ -9,6 +10,7 @@ var map = function (items, f) {
 	return output;
 };
 
+// Checks incoming data to ensure it is complete and capable of being parsed to floats.
 var cleanData = function (data) {
 	var errorMsg = "There was an error, please try again";
 
@@ -17,13 +19,13 @@ var cleanData = function (data) {
 		if ( typeof data[key] === "undefined" )
 			return errorMsg;
 	}
-	// Remove non-numerical keys from the parseFloat checking.
+	// Exclude non-numerical keys from the parseFloat checking.
 	var excludedKeys = {
 		companyName: 0
 	};
 
+	// Check to make sure values can be parsed to floats.  If they can't, return an error message.  If they can, parse to floats.
 	for (var key in data) {
-		// Check to make sure values can be processes to floats.
 		if ( !(key in excludedKeys) && isNaN(parseFloat(data[key])) ) {
 			return errorMsg;
 		}
@@ -34,27 +36,17 @@ var cleanData = function (data) {
 	}
 };
 
+// Check to ensure data is within a certain range.
 var rangeValidate = function (min, max, value) {
+	var errorMsg = "There was an error, please try again";
 	if (value < min || value > max) {
-		return false;
+		return errorMsg;
 	}
 	else {
 		return true;
 	}
 };
 
-var objValidate = function (criteriaObj, evalObj) {
-	for (var key in evalObj) {
-		if ( !(rangeValidate(crieriaObj[key].min, criteriaObj[key].max, evalObj[key])) ) {
-			return false;
-		}
-	}
-	return true;
-};
-
-
-
 exports.map = map;
 exports.cleanData = cleanData;
 exports.rangeValidate = rangeValidate;
-exports.objValidate = objValidate;
