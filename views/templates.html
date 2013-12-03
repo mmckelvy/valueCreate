@@ -7,46 +7,46 @@
 		<form id="add-company-form">
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" id="first-input" name="companyName" class="form-control company-input" placeholder="company name" value="NewCo"> 
+					<input type="text" id="first-input" name="companyName" class="form-control company-input" placeholder="company name" value="NewCo" required> 
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="targetReturns" step="any" class="form-control company-input" placeholder="target return" value=0.2>
+					<input type="number" name="targetReturns" min=0.01 max=1 step="any" class="form-control company-input" placeholder="target return" value=0.2 required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="exitMultiple" step="any" class="form-control company-input" placeholder="exit multiple" value=5> 
-				</div>
-			</div>
-			<div class="row newCo-row">
-				<div class="col-xs-4">
-					<input type="number" name="baseRev" step="any" class="form-control company-input" placeholder="base year revenue" value=100>
-				</div>
-				<div class="col-xs-4">
-					<input type="number" name="cagr" step="any" class="form-control company-input" placeholder="5 year revenue cagr" value=0.05>
-				</div>
-				<div class="col-xs-4">
-					<input type="text" name="margin" step="any" class="form-control company-input" placeholder="ebitda margin" value=0.25 >
+					<input type="number" name="exitMultiple" min=1 max=15 step="any" class="form-control company-input" placeholder="exit multiple" value=5 required> 
 				</div>
 			</div>
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="number" name="depAmort" step="any" class="form-control company-input" placeholder="depreciation & amortization %" value=0.02 >
+					<input type="number" name="baseRev" min=0.1 step="any" class="form-control company-input" placeholder="base year revenue" value=100 required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="capEx" step="any" class="form-control company-input" placeholder="capital expenditures %" value=0.025 >
+					<input type="number" name="cagr" step="any" class="form-control company-input" placeholder="5 year revenue cagr" value=0.05 required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="nwcDays" class="form-control company-input" placeholder="working capital days" value=30 >
+					<input type="number" name="margin" max=1 step="any" class="form-control company-input" placeholder="ebitda margin" value=0.25 required>
 				</div>
 			</div>
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="number" name="debt" step="any" class="form-control company-input" placeholder="debt financing" value=25>
+					<input type="number" name="depAmort" min=0 max=0.99 step="any" class="form-control company-input" placeholder="depreciation & amortization %" value=0.02 required>
 				</div>
 				<div class="col-xs-4">
-				<input type="number" name="interestRate" step="any" class="form-control company-input" placeholder="cost of debt" value=0.06>
+					<input type="number" name="capEx" min=0 max=0.99 step="any" class="form-control company-input" placeholder="capital expenditures %" value=0.025 required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="taxRate" step="any" class="form-control company-input" placeholder="tax rate" value=0.4>
+					<input type="number" name="nwcDays" step="any" class="form-control company-input" placeholder="working capital days" value=30 required>
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="number" name="debt" min=0 step="any" class="form-control company-input" placeholder="debt financing" value=25 required>
+				</div>
+				<div class="col-xs-4">
+				<input type="number" name="interestRate" min=0 max=0.99 step="any" class="form-control company-input" placeholder="cost of debt" value=0.06 required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="taxRate" min=0 max=0.99 step="any" class="form-control company-input" placeholder="tax rate" value=0.4 required>
 				</div>
 			</div>
 			<div class="row newCo-row">
