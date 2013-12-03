@@ -129,7 +129,7 @@ $(function () {
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  Create new object to hold this data.
             $('.maincontent').empty();
-            if ( results === "error" || "errors" in results ) {
+            if ( results === "error" || "message" in results ) {
                 $('.maincontent').append("Invalid input, please try again");
             }
             else {
