@@ -12,7 +12,7 @@ var map = function (items, f) {
 
 // Checks incoming data to ensure it is complete and capable of being parsed to floats.
 var cleanData = function (data) {
-	var errorMsg = "There was an error, please try again";
+	var errorMsg = "error";
 
 	// Check to make sure form submission is complete.
 	for (var key in data) {
@@ -36,17 +36,5 @@ var cleanData = function (data) {
 	}
 };
 
-// Check to ensure data is within a certain range.
-var rangeValidate = function (min, max, value) {
-	var errorMsg = "There was an error, please try again";
-	if (value < min || value > max) {
-		return errorMsg;
-	}
-	else {
-		return true;
-	}
-};
-
 exports.map = map;
 exports.cleanData = cleanData;
-exports.rangeValidate = rangeValidate;

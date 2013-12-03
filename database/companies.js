@@ -4,18 +4,57 @@ var Schema = mongoose.Schema;
 
 // Create the company schema.
 var companySchema = new Schema ({
-	companyName: String,
-	targetReturns: Number,
-	exitMultiple: Number,
-	baseRev: Number,
-	cagr: Number,
-	margin: Number,
-	depAmort: Number,
-	capEx: Number,
-	nwcDays: Number,
-	debt: Number,
-	interestRate: Number,
-	taxRate: Number
+	companyName: {
+		type: String
+	},
+	targetReturns: {
+		type: Number,
+		min: 0.01,
+		max: 1
+	},
+	exitMultiple: {
+		type: Number,
+		min: 1,
+		max: 15
+	},
+	baseRev: {
+		type: Number,
+		min: 0.1,
+	},
+	cagr: {
+		type: Number,
+	},
+	margin: {
+		type: Number,
+		max: 1
+	},
+	depAmort: {
+		type: Number,
+		min: 0,
+		max: 0.99
+	},
+	capEx: {
+		type: Number,
+		min: 0,
+		max: 0.99
+	},
+	nwcDays: {
+		type: Number,
+	},
+	debt: {
+		type: Number,
+		min: 0
+	},
+	interestRate: {
+		type: Number,
+		min: 0,
+		max: 0.99
+	},
+	taxRate: {
+		type: Number,
+		min: 0,
+		max: 0.99
+	}
 });
 
 // Returns company's cumulative free cash flow and final year EBITDA.

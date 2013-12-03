@@ -13,15 +13,21 @@ module.exports = function (app) {
 	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
 	app.post('/newcompany', function (req, res) {
 		var newCoData = req.body;
-		if ( utilities.cleanData(newCoData) === "There was an error, please try again" ) {
+		if ( utilities.cleanData(newCoData) === "error" ) {
 			res.send(utilities.cleanData(newCoData));
 		}
 		else {
 			var newCompany = new Company (utilities.cleanData(newCoData));
-			var newCoResults = newCompany.getResults();
-			newCompany.save();
-			
-			res.send(newCoResults);
+			newCompany.save(function (err) {
+				console.log(err);
+				if (err) {
+					res.send(err);
+				}
+				else {
+					var newCoResults = newCompany.getResults();
+					res.send(newCoResults);
+				}
+			});
 		}
 	});
 	

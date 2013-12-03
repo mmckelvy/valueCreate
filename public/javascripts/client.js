@@ -1,17 +1,20 @@
 $(function () {
 	
 	// RENDERING
-	var renderElements = function (template, data) {
+	// Processes Handlebars templates.
+    var renderElements = function (template, data) {
 		var templateSource = template.html();
 		var renderTemplate = Handlebars.compile(templateSource);
 		var rendered = renderTemplate(data);
 		$('.maincontent').append(rendered);
 	};
 	
+    // Displays a hidden element.
 	var showElements = function (displayElement) {
 		displayElement.addClass('show');
 	};
 
+    // Creates a High Chart.
     var createChart = function (container, results) {
         Highcharts.setOptions({
             chart: {
@@ -126,9 +129,8 @@ $(function () {
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  Create new object to hold this data.
             $('.maincontent').empty();
-            console.log(results);
-            if (results === "There was an error, please try again") {
-                $('.maincontent').append(results);
+            if ( results === "error" || "errors" in results ) {
+                $('.maincontent').append("Invalid input, please try again");
             }
             else {
                 renderElements($('#results-template'), results);
@@ -163,6 +165,7 @@ $(function () {
         });
     });
 
+    // On click of "about," show the about section.
     $('.introcontent').on('click', '#about', function (e) {
         $('.maincontent').empty();
         if ($('#about-container').length === 0) { 
@@ -173,6 +176,7 @@ $(function () {
         }
     });
 
+    // On click of "clear," clear the main container.
     $('.introcontent').on('click', '#clear', function (e) {
         $('.maincontent').empty();
     });
