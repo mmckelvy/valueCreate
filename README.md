@@ -14,4 +14,4 @@ ValueCreate uses the "buyout" valuation method, the standard method employed by 
 ValueCreate is for business owners, investment bankers, private equity professionals, venture capital professionals, and anyone who wants to better understand the value of a given business.  It's perfect for quickly getting a sense of a company's worth ahead of a pitch, indication of interest, or even real time during meetings and negotiations.
 
 ## technologies:  
-I built ValueCreate with the usual front-end tools: HTML5, CSS3, JavaScript, and jQuery.  On the back-end I am using Node.js, Express, MongoDB, and Mongoose.  For templating I am using Jade and Handlebars. 
+I built ValueCreate with the following front-end tools: HTML5, CSS3, JavaScript, and jQuery.  On the back-end I am used Node.js, Express, MongoDB, and Mongoose.  For templating I am used Jade and Handlebars. 
