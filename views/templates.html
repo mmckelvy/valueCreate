@@ -1,4 +1,21 @@
-<!-- New company input form -->
+<script id="register-template" type="number/x-handlebars-template">
+	<div id="register-container" class="insert-block downlow">
+		<p class="instruction">
+			Please enter a username and password:
+		</p>
+		<form id="register-form">
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="text" name="username" class="form-control company-input" placeholder="username" required>
+				</div>
+				<div class="col-xs-4">
+					<input type="text" name="password" class="form-control company-input" placeholder="password" required>
+				</div>
+			</div>
+		</form>
+	</div>	
+</script>
+
 <script id="newCo-template" type="number/x-handlebars-template">
 	<div id="add-company-container" class="insert-block downlow">
 		<p class="instructions">
@@ -7,7 +24,7 @@
 		<form id="add-company-form">
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" id="first-input" name="companyName" class="form-control company-input" placeholder="company name" value="NewCo" required> 
+					<input type="text" name="companyName" class="form-control company-input" placeholder="company name" value="NewCo" required> 
 				</div>
 				<div class="col-xs-4">
 					<input type="number" name="targetReturns" min=0.01 max=1 step="any" class="form-control company-input" placeholder="target return" value=0.2 required>

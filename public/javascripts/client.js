@@ -111,6 +111,17 @@ $(function () {
     };
     
     // EVENTS
+    // On click of the 'register' text, render a username / password form via Handlebars.
+    $('.introcontent').on('click', '#register', function (e) {
+        $('.maincontent').empty();
+        if ($('#register-container').length === 0) {
+            renderElements($('#register-template'));
+            setTimeout( function () {
+                showElements($('#register-container'));
+            }, 0 );
+        }
+    });
+
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {
         $('.maincontent').empty();

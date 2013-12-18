@@ -2,6 +2,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// Create the user Schema.
+var userSchema = new Schema ({
+	username: String,
+	password: String
+});
+
 // Create the company schema.
 var companySchema = new Schema ({
 	companyName: {

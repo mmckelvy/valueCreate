@@ -10,6 +10,11 @@ module.exports = function (app) {
 		res.render('index');
 	});
 	
+	// Receive user login information and authenticate user input.
+	app.post('/login', function (req, res) {
+		// some code
+	});
+
 	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
 	app.post('/newcompany', function (req, res) {
 		var newCoData = req.body;
