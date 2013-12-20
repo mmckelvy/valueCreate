@@ -122,6 +122,15 @@ $(function () {
         }
     });
 
+    // On click of the submit form, send username and passoword to the server for processing.
+    $('.maincontent').on('submit', '#register-form', function (e) {
+        e.preventDefault();
+        $.post ('/register', $('#register-form').serialize(), function (results) {
+            $('.maincontent').empty();
+            $('.maincontent').append(results);
+        });
+    });
+
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {
         $('.maincontent').empty();
@@ -138,7 +147,7 @@ $(function () {
     $('.maincontent').on('submit', '#add-company-form', function (e) {
         e.preventDefault();
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
-            // Receive calculations from the server.  Create new object to hold this data.
+            // Receive calculations from the server.  If user input was inaccurate, return an error message, else, render the calculation results.
             $('.maincontent').empty();
             if ( results === "error" || "message" in results ) {
                 $('.maincontent').append("Invalid input, please try again");

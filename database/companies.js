@@ -4,9 +4,23 @@ var Schema = mongoose.Schema;
 
 // Create the user Schema.
 var userSchema = new Schema ({
-	username: String,
-	password: String
+	username: {
+		type: String,
+		unique: true
+	},
+	password: {
+		type: String,
+		unique: true
+	}
 });
+
+// Performs username authentication.
+userSchema.methods.checkUserName = function () {
+	// Set a regular expression to accept usernames of 1-10 alphanumeric characters.
+	var userRegex = /^[a-zA-Z0-9]{1,10}$/;
+	// Will return false if username does not match the regex, else true.
+	return userRegex.test(this.username); 
+};
 
 // Create the company schema.
 var companySchema = new Schema ({

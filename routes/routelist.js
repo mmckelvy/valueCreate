@@ -1,5 +1,6 @@
 var utilities = require('../utilities/utility');
 var mongoose = require('mongoose');
+// will need to break this up and import both user and company.
 var Company = require('../database/companies');
 
 //Define routes.
@@ -11,15 +12,14 @@ module.exports = function (app) {
 	});
 	
 	// Receive user login information and authenticate user input.
-	app.post('/login', function (req, res) {
-		// some code
+	app.post('/register', function (req, res) {
+		var newUser = new User
+
 	});
 
 	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
 	app.post('/newcompany', function (req, res) {
 		var newCoData = req.body;
-		console.log(newCoData);
-		console.log(utilities.cleanData(newCoData));
 		if ( utilities.cleanData(newCoData) === "error" ) {
 			res.send(utilities.cleanData(newCoData));
 		}
