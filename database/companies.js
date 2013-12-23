@@ -114,7 +114,7 @@ companySchema.methods.freeCashFlowCalc = function () {
 	return {
 		cumFcf: cumFcf,
 		terminalEbitda: ebitda
-	}
+	};
 };
 
 // Returns company's key value metrics: entry enterprise value, entry equity, and ending equity.
@@ -130,7 +130,7 @@ companySchema.methods.valueCalc = function () {
 		tev: begEquity + this.debt,
 		endEquity: endEquity,
 		begEquity: begEquity
-	}
+	};
 };
 
 // Returns EBITDA contribution to equity growth.

@@ -13,7 +13,9 @@ module.exports = function (app) {
 	
 	// Receive user login information and authenticate user input.
 	app.post('/register', function (req, res) {
-		var newUser = new User
+		var newUserInfo = req.body;
+		console.log(newUserInfo);
+		res.send('success');
 
 	});
 
