@@ -159,6 +159,7 @@ $(function () {
         e.preventDefault();
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  If user input was inaccurate, return an error message, else, render the calculation results.
+            console.log(results);
             $('.maincontent').empty();
             if ( results === "error" || "message" in results ) {
                 $('.maincontent').append("Invalid input, please try again");

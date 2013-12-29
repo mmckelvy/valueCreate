@@ -33,6 +33,9 @@ userSchema.methods.checkPassword = function () {
 // COMPANY SCHEMA
 // Create the company schema.
 var companySchema = new Schema ({
+	username: {
+		type: String
+	},
 	companyName: {
 		type: String
 	},

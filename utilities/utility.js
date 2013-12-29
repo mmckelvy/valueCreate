@@ -14,6 +14,7 @@ var map = function (items, f) {
 var cleanData = function (data) {
 	var errorMsg = "error";
 	var excludedKeys = {
+		username: 0,
 		companyName: 0
 	};
 
@@ -22,7 +23,7 @@ var cleanData = function (data) {
 		if ( typeof data[key] === "undefined" || data[key] === null || data[key] === "") {
 			return errorMsg;
 		}
-		// Check to make sure values can be parsed to floats.
+		// Check to make sure values can be parsed to floats except for keys in 'excludedKeys' object.
 		else if ( !(key in excludedKeys) && isNaN(parseFloat(data[key])) ) {
 			return errorMsg;
 		}

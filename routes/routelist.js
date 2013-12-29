@@ -37,6 +37,7 @@ module.exports = function (app) {
 	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
 	app.post('/newcompany', function (req, res) {
 		var newCoData = req.body;
+		newCoData.username = req.session.username;
 		if ( utilities.cleanData(newCoData) === "error" ) {
 			res.send(utilities.cleanData(newCoData));
 		}
