@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// USER SCHEMA
 // Create the user Schema.
 var userSchema = new Schema ({
 	username: {
@@ -15,13 +16,21 @@ var userSchema = new Schema ({
 });
 
 // Performs username authentication.
-userSchema.methods.checkUserName = function () {
+userSchema.methods.checkUsername = function () {
 	// Set a regular expression to accept usernames of 1-10 alphanumeric characters.
 	var userRegex = /^[a-zA-Z0-9]{1,10}$/;
 	// Will return false if username does not match the regex, else true.
 	return userRegex.test(this.username); 
 };
 
+userSchema.methods.checkPassword = function () {
+	// Set a regular expression to accept usernames of 4-10 alphanumeric characters.
+	var passRegex = /^[a-zA-Z0-9]{4,10}$/;
+	// Will return false if username does not match the regex, else true.
+	return passRegex.test(this.password);
+};
+
+// COMPANY SCHEMA
 // Create the company schema.
 var companySchema = new Schema ({
 	companyName: {
@@ -166,5 +175,7 @@ companySchema.methods.getResults = function () {
 
 // Create the Company model with the companySchema schema.
 var Company = mongoose.model('Company', companySchema);
-module.exports = Company;
+var User = mongoose.model('User', userSchema);
+exports.company = Company;
+exports.user = User;
  

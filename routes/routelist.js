@@ -1,7 +1,9 @@
 var utilities = require('../utilities/utility');
 var mongoose = require('mongoose');
-// will need to break this up and import both user and company.
-var Company = require('../database/companies');
+// Require the database files.
+var valCreateInfo = require('../database/valcreateinfo');
+var Company = valCreateInfo.company;
+var User = valCreateInfo.user;
 
 //Define routes.
 module.exports = function (app) {
@@ -14,9 +16,19 @@ module.exports = function (app) {
 	// Receive user login information and authenticate user input.
 	app.post('/register', function (req, res) {
 		var newUserInfo = req.body;
-		console.log(newUserInfo);
-		res.send('success');
-
+		// Create a new mongoose User model with the user input.
+		var newUser = new User (newUserInfo);
+		// Ensure username is in the acceptable format.
+		if ( !(newUser.checkUsername()) ) {
+			res.send('Invalid username.  Please try again');
+		}
+		else if ( !(newUser.checkPassword()) ) {
+			res.send('Invalid password.  Please try again');
+		}
+		else {
+			newUser.save();
+			res.send(newUser);
+		}
 	});
 
 	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
@@ -28,7 +40,6 @@ module.exports = function (app) {
 		else {
 			var newCompany = new Company (utilities.cleanData(newCoData));
 			newCompany.save(function (err) {
-				console.log(err);
 				if (err) {
 					res.send(err);
 				}

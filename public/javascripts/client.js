@@ -122,14 +122,20 @@ $(function () {
         }
     });
 
-    // On click of the submit form, send username and passoword to the server for processing.
+    // On click of the registration form 'submit' button, send username and password to the server for processing.
     $('.maincontent').on('submit', '#register-form', function (e) {
         e.preventDefault();
         $.post ('/register', $('#register-form').serialize(), function (results) {
             $('.maincontent').empty();
-            $('.maincontent').append(results);
+            console.log(results);
+            renderElements($('#message-template'), results);
+            setTimeout( function () {
+                showElements($('#message-container'));
+            }, 0 );
         });
     });
+
+    // On 
 
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {

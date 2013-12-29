@@ -1,7 +1,7 @@
-<script id="register-template" type="number/x-handlebars-template">
+<script id="register-template" type="text/x-handlebars-template">
 	<div id="register-container" class="insert-block downlow">
-		<p class="instruction">
-			Please enter a username and password:
+		<p class="instructions">
+			Please create a username and password:
 		</p>
 		<form id="register-form">
 			<div class="row newCo-row">
@@ -21,7 +21,15 @@
 	</div>	
 </script>
 
-<script id="newCo-template" type="number/x-handlebars-template">
+<script id="message-template" type="text/x-handlebars-template">
+	<div id="message-container" class="insert-block downlow">
+		<p class="lots-text">
+			<span class="bold-category">Welcome {{username}}.</span> Please click the "new company" or "existing company" links to continue.
+		</p>
+	</div>
+</script>
+
+<script id="newCo-template" type="text/x-handlebars-template">
 	<div id="add-company-container" class="insert-block downlow">
 		<p class="instructions">
 			Enter the following ($ in millions):
@@ -80,7 +88,7 @@
 	</div>
 </script>
 
-<script id="results-template" type="number/x-handlebars-template">
+<script id="results-template" type="text/x-handlebars-template">
 	<div id="results-container">
 		<div class="row">
 			<div class="col-xs-6">
@@ -101,7 +109,7 @@
 	</div>
 </script>
 
-<script id="existingList-template" type="number/x-handlebars-template">
+<script id="existingList-template" type="text/x-handlebars-template">
 	<div id="existing-company-container" class="insert-block downlow">
 		<p class="instructions">
 			Select a company:
@@ -116,20 +124,20 @@
 	</div>
 </script>
 
-<script id="about-template" type="number/x-handlebars-template">
+<script id="about-template" type="text/x-handlebars-template">
 	<div id="about-container" class="downlow">
-		<p class="lots-number">
-			<span class="about-category">what it is: </span>ValueCreate is a fully functional valuation model packaged in a web application.
+		<p class="lots-text">
+			<span class="bold-category">what it is: </span>ValueCreate is a fully functional valuation model packaged in a web application.
 			It allows you to quickly compute a company's value using a minimal number of standard financial inputs.
 		</p>
-		<p class="lots-number">
-		<span class="about-category">how it works: </span>Fill in the "new company" input form with your company's characteristics.  Click submit.  The value of your company will be returned along with a graphical breakdown of the key value contributors.  If you want to access a company you have already created, click the "existing company" link and select your desired company.
+		<p class="lots-text">
+		<span class="bold-category">how it works: </span>Fill in the "new company" input form with your company's characteristics.  Click submit.  The value of your company will be returned along with a graphical breakdown of the key value contributors.  If you want to access a company you have already created, click the "existing company" link and select your desired company.
 		</p>
-		<p class="lots-number">
-			<span class="about-category">valuation methodology: </span>ValueCreate uses the "buyout" valuation method, the standard method employed by most private equity and venture capital firms.  The buyout method values a company by calculating its hypothetical equity value at the end of a 5 year hold period and solving for a beginning equity value that, when increased over the hold period by the target rate of return, is equivalent to the ending equity value.  The beginning enterprise value (the total value of a company) is then calculated by adding the initial debt financing (if any) to the beginning equity value.                        
+		<p class="lots-text">
+			<span class="bold-category">valuation methodology: </span>ValueCreate uses the "buyout" valuation method, the standard method employed by most private equity and venture capital firms.  The buyout method values a company by calculating its hypothetical equity value at the end of a 5 year hold period and solving for a beginning equity value that, when increased over the hold period by the target rate of return, is equivalent to the ending equity value.  The beginning enterprise value (the total value of a company) is then calculated by adding the initial debt financing (if any) to the beginning equity value.                        
 		</p>
-		<p class="lots-number">
-			<span class="about-category">who it's for: </span>ValueCreate is for business owners, investment bankers, private equity professionals, venture capital professionals, and anyone who wants to better understand the value of a given business.  It's perfect for quickly getting a sense of a company's worth ahead of a pitch, indication of interest, or even real time during meetings and negotiations.                 
+		<p class="lots-text">
+			<span class="bold-category">who it's for: </span>ValueCreate is for business owners, investment bankers, private equity professionals, venture capital professionals, and anyone who wants to better understand the value of a given business.  It's perfect for quickly getting a sense of a company's worth ahead of a pitch, indication of interest, or even real time during meetings and negotiations.                 
 		</p>
 	</div>
 </script>
