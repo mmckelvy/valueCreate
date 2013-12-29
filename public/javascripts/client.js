@@ -128,10 +128,15 @@ $(function () {
         $.post ('/register', $('#register-form').serialize(), function (results) {
             $('.maincontent').empty();
             console.log(results);
-            renderElements($('#message-template'), results);
-            setTimeout( function () {
-                showElements($('#message-container'));
-            }, 0 );
+            if (typeof results === 'string') {
+                $('.maincontent').append(results);
+            }
+            else {
+                renderElements($('#message-template'), results);
+                setTimeout( function () {
+                    showElements($('#message-container'));
+                }, 0 );
+            }
         });
     });
 

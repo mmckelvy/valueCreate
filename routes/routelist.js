@@ -20,12 +20,15 @@ module.exports = function (app) {
 		var newUser = new User (newUserInfo);
 		// Ensure username is in the acceptable format.
 		if ( !(newUser.checkUsername()) ) {
-			res.send('Invalid username.  Please try again');
+			res.send('Your username is in an unacceptable format. Please click "register" and try again.');
 		}
 		else if ( !(newUser.checkPassword()) ) {
-			res.send('Invalid password.  Please try again');
+			res.send('Your password is in an unacceptable format. Please click "register" and try again.');
 		}
 		else {
+			// Establish a session with the current user.
+			req.session.username = newUser.username;
+			req.session.password = newUser.password;
 			newUser.save();
 			res.send(newUser);
 		}

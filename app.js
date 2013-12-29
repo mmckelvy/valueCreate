@@ -14,6 +14,11 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.cookieSession({
+	secret: 'leverageyourvalue',
+	cookie: { maxAge: 1000*60*60 }
+}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
