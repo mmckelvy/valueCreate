@@ -127,7 +127,6 @@ $(function () {
         e.preventDefault();
         $.post ('/register', $('#register-form').serialize(), function (results) {
             $('.maincontent').empty();
-            console.log(results);
             if (typeof results === 'string') {
                 $('.maincontent').append(results);
             }
@@ -140,7 +139,33 @@ $(function () {
         });
     });
 
-    // On 
+    // On click of the 'login' text, render a username / password form via Handlebars.
+    $('.introcontent').on('click', '#login', function (e) {
+        $('.maincontent').empty();
+        if ($('#login-container').length === 0) {
+            renderElements($('#login-template'));
+            setTimeout( function () {
+                showElements($('#login-container'));
+            }, 0 );
+        }
+    });
+
+    // On click of the login submit button, send username and password to the server for processing.
+    $('.maincontent').on('submit', '#login-form', function (e) {
+        e.preventDefault();
+        $.post ('/login', $('#login-form').serialize(), function (results) {
+            $('.maincontent').empty();
+            if (typeof results === 'string') {
+                $('.maincontent').append(results);
+            }
+            else {
+                renderElements($('#message-template'), results);
+                setTimeout( function () {
+                    showElements($('#message-container'));
+                }, 0 );
+            }
+        });
+    });    
 
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {

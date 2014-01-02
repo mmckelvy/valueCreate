@@ -18,7 +18,7 @@ module.exports = function (app) {
 		var newUserInfo = req.body;
 		// Create a new mongoose User model with the user input.
 		var newUser = new User (newUserInfo);
-		// Ensure username is in the acceptable format.
+		// Ensure username and password is in the acceptable format.
 		if ( !(newUser.checkUsername()) ) {
 			res.send('Your username is in an unacceptable format. Please click "register" and try again.');
 		}
@@ -31,6 +31,28 @@ module.exports = function (app) {
 			req.session.password = newUser.password;
 			newUser.save();
 			res.send(newUser);
+		}
+	});
+
+	app.post('/login', function (req, res) {
+		var existingUserInfo = req.body;
+		var existingUser = new User (existingUserInfo);
+		// Ensure username and password is in the acceptable format.
+		if ( !(existingUser.checkUsername()) ) {
+			res.send('Your username is in an unacceptable format. Please click "login" and try again.');
+		}
+		else if ( !(existingUser.checkPassword()) ) {
+			res.send('Your password is in an unacceptable format. Please click "login" and try again.');
+		}
+		// Query the database for the user.  Process the results.
+		else {
+			User.findOne({username: existingUser.username, password: existingUser.password}, function (err, existingUser) {
+				if (err) {res.send('username and/or password not found')}
+				// Establish a session with the existing user.
+				req.session.username = existingUser.username;
+				req.session.password = existingUser.password;
+				res.send(existingUser);
+			});
 		}
 	});
 
@@ -57,8 +79,9 @@ module.exports = function (app) {
 	
 	// Send client a list of all existing companies.
 	app.get('/existingcompany', function (req, res) {
-		// Get all the items in the database, send back to client
-		Company.find({}, function (err, companies) {
+		// Get all the companies that match the given username, send the list of companies back to the client.
+		var userMatch = req.session.username;
+		Company.find({ username: userMatch }, function (err, companies) {
 			if (err) {res.send('there was an error')}
 			var namesList = utilities.map(companies, function (obj) {
 				return obj.companyName;
@@ -70,9 +93,9 @@ module.exports = function (app) {
 
 	// Query database for existing name, calculate valuations for that company, send result back to client.
 	app.get('/findexisting', function (req, res) {
-		var criteria = req.query.queryItem;
-
-		Company.findOne({companyName: criteria}, function (err, queriedCompany) {
+		var companyCriteria = req.query.queryItem;
+		var userCriteria = req.session.username;
+		Company.findOne({companyName: companyCriteria, username: userCriteria}, function (err, queriedCompany) {
 			if (err) {res.send('there was an error')}
 			// Calculate the valuation and package results in an object for transmission to client.
 			var queryCoResults = queriedCompany.getResults();
