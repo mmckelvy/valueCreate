@@ -46,12 +46,15 @@ module.exports = function (app) {
 		}
 		// Query the database for the user.  Process the results.
 		else {
+			console.log(existingUser);
 			User.findOne({username: existingUser.username, password: existingUser.password}, function (err, existingUser) {
-				if (err) {res.send('username and/or password not found')}
+				if (err || existingUser === null) {res.send('Username and/or password not found.  Hit login and try again.')}
 				// Establish a session with the existing user.
-				req.session.username = existingUser.username;
-				req.session.password = existingUser.password;
-				res.send(existingUser);
+				else {
+					req.session.username = existingUser.username;
+					req.session.password = existingUser.password;
+					res.send(existingUser);
+				}
 			});
 		}
 	});

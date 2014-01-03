@@ -128,7 +128,7 @@ $(function () {
         $.post ('/register', $('#register-form').serialize(), function (results) {
             $('.maincontent').empty();
             if (typeof results === 'string') {
-                $('.maincontent').append(results);
+                $('.maincontent').append('<p class="instructions">' + results + '</p>');
             }
             else {
                 renderElements($('#message-template'), results);
@@ -156,7 +156,7 @@ $(function () {
         $.post ('/login', $('#login-form').serialize(), function (results) {
             $('.maincontent').empty();
             if (typeof results === 'string') {
-                $('.maincontent').append(results);
+                $('.maincontent').append('<p class="instructions">'+ results + '</p>');
             }
             else {
                 renderElements($('#message-template'), results);
@@ -184,10 +184,9 @@ $(function () {
         e.preventDefault();
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  If user input was inaccurate, return an error message, else, render the calculation results.
-            console.log(results);
             $('.maincontent').empty();
             if ( results === "error" || "message" in results ) {
-                $('.maincontent').append("Invalid input, please try again");
+                $('.maincontent').append('<p class="instructions">Invalid input, please try again</p>');
             }
             else {
                 renderElements($('#results-template'), results);
