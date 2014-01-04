@@ -170,13 +170,19 @@ $(function () {
     // On click of the 'new company' text, render a new company input form via Handlebars.
     $('.introcontent').on('click', '#newCo', function (e) {
         $('.maincontent').empty();
-        if ($('#add-company-container').length === 0) { 
-            renderElements($('#newCo-template'));
-            setTimeout( function () {
-                showElements($('#add-company-container'));
-                $('#first-input').focus(); 
-            }, 0 );
-        }
+        $.get ('/checkuser', function (results) {
+            // Ensure user is logged in and form does not already exist.
+            if ( results && $('#add-company-container').length === 0 ) { 
+                renderElements($('#newCo-template'));
+                setTimeout( function () {
+                    showElements($('#add-company-container'));
+                    $('#first-input').focus(); 
+                }, 0 );
+            }
+            else {
+                $('.maincontent').append('<p class="instructions">Please login or register before you create a company.')
+            }
+        });
     });     
     
     // On click of the submit form, send the form data to the server, then render the valuation results (received from server).
@@ -186,7 +192,7 @@ $(function () {
             // Receive calculations from the server.  If user input was inaccurate, return an error message, else, render the calculation results.
             $('.maincontent').empty();
             if ( results === "error" || "message" in results ) {
-                $('.maincontent').append('<p class="instructions">Invalid input, please try again</p>');
+                $('.maincontent').append('<p class="instructions">Invalid input, please try again.</p>');
             }
             else {
                 renderElements($('#results-template'), results);
@@ -200,7 +206,7 @@ $(function () {
         $('.maincontent').empty();
         // Make an ajax call to get list of companies
         $.get ('/existingcompany', null, function (results) {
-            //render company form here.
+            //Render company form here.
             if ($('#existing-company-container').length === 0) {
                 renderElements($('#existingList-template'), {results: results});
                 setTimeout( function () {

@@ -59,8 +59,19 @@ module.exports = function (app) {
 		}
 	});
 
+	// Ensure user is logged in.
+	app.get('/checkuser', function (req, res) {
+		if (req.session.username === null || req.session.username === '' || typeof req.session.username === 'undefined') {
+			res.send(false);
+		}
+		else {
+			res.send(true);
+		}
+	});
+
 	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
 	app.post('/newcompany', function (req, res) {
+		console.log(req.session.username);
 		var newCoData = req.body;
 		newCoData.username = req.session.username;
 		if ( utilities.cleanData(newCoData) === "error" ) {
