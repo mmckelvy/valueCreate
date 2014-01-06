@@ -13,7 +13,7 @@ module.exports = function (app) {
 		res.render('index');
 	});
 	
-	// Receive user login information and authenticate user input.
+	// Receive user register information and authenticate user input.
 	app.post('/register', function (req, res) {
 		var newUserInfo = req.body;
 		// Create a new mongoose User model with the user input.
@@ -34,6 +34,7 @@ module.exports = function (app) {
 		}
 	});
 
+	// Receive login credentials from client.  Check to ensure user / password exist / are correct and establish a session if so.
 	app.post('/login', function (req, res) {
 		var existingUserInfo = req.body;
 		var existingUser = new User (existingUserInfo);
@@ -46,8 +47,7 @@ module.exports = function (app) {
 		}
 		// Query the database for the user.  Process the results.
 		else {
-			console.log(existingUser);
-			User.findOne({username: existingUser.username, password: existingUser.password}, function (err, existingUser) {
+			User.findOne({ username: existingUser.username, password: existingUser.password }, function (err, existingUser) {
 				if (err || existingUser === null) {res.send('Username and/or password not found.  Hit login and try again.')}
 				// Establish a session with the existing user.
 				else {
@@ -71,7 +71,6 @@ module.exports = function (app) {
 
 	// Get new company input from user, check for errors, create a new Mongoose model with the data, perform calculations, send results back to client.
 	app.post('/newcompany', function (req, res) {
-		console.log(req.session.username);
 		var newCoData = req.body;
 		newCoData.username = req.session.username;
 		if ( utilities.cleanData(newCoData) === "error" ) {
@@ -91,6 +90,17 @@ module.exports = function (app) {
 		}
 	});
 	
+	// Receive company edit request from client.  Send all company information back to client.
+	app.get('/editcompany', function (req, res) {
+		var userMatch = req.session.username;
+		var editCompany = req.query.queryItem;
+		Company.findOne({ username: userMatch, companyName: editCompany}, function (err, editCompany) {
+			if (err) {res.send('there was an error')}
+
+			res.send(editCompany);
+		});
+	});
+
 	// Send client a list of all existing companies.
 	app.get('/existingcompany', function (req, res) {
 		// Get all the companies that match the given username, send the list of companies back to the client.

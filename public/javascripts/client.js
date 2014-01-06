@@ -201,6 +201,7 @@ $(function () {
         });
     });
 
+    
     // On click of 'existing company' text, get the available companies from server, render in a form.
     $('.introcontent').on('click', '#existingCo', function (e) {
         $('.maincontent').empty();
@@ -224,6 +225,21 @@ $(function () {
             $('.maincontent').empty();
             renderElements($('#results-template'), results);
             createChart($('#chart-container'), results);
+        });
+    });
+
+    // On click of the edit (pencil) icon in the existing company list, bring up the input form with the clicked company's inputs.
+    $('.maincontent').on('click', '#edit-company', function (e) {
+        var queryItem = $(this).attr('name');
+        console.log(queryItem);
+        // Make an ajax call to get the appropriate company.        
+        $.get ('/editcompany', {queryItem: queryItem}, function (results) {
+            $('.maincontent').empty();
+            renderElements($('#editCo-template'), results);
+            setTimeout( function () {
+                showElements($('#editCo-container'));
+                $('#first-input').focus();
+            }, 0 );
         });
     });
 

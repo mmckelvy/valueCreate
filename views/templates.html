@@ -123,14 +123,73 @@
 						<li><span class="valuation-category">equity commitment: </span><span class="valuation-number">${{begEquity}}mm</span></li>
 					</ul>
 				</div>
-				<span class="glyphicon glyphicon-pencil clickable company-edit"></span>
-				<span class="glyphicon glyphicon-remove clickable company-edit"></span>
+				<span id="edit-company" name={{companyName}} class="glyphicon glyphicon-pencil company-edit"></span>
+				<span id ="delete-company" name={{companyName}} class="glyphicon glyphicon-remove company-edit"></span>
 			</div>
 			<div class="col-xs-6">
 				<span class="results-titles">sources of value ($mm)</span>
 				<div id="chart-container"></div>
 			</div>
 		</div>
+	</div>
+</script>
+
+<script id="editCo-template" type="text/x-handlebars-template">
+	<div id="editCo-container" class="insert-block downlow">
+		<p class="instructions">
+			Enter the following ($ in millions):
+		</p>
+		<form id="edit-company-form">
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="text" name="companyName" class="form-control company-input" placeholder="company name" value={{companyName}} required> 
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="targetReturns" min=0.01 max=1 step="any" class="form-control company-input" placeholder="target return" value={{targetReturns}} required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="exitMultiple" min=1 max=15 step="any" class="form-control company-input" placeholder="exit multiple" value={{exitMultiple}} required> 
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="number" name="baseRev" min=0.1 step="any" class="form-control company-input" placeholder="base year revenue" value={{baseRev}} required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="cagr" step="any" class="form-control company-input" placeholder="5 year revenue cagr" value={{cagr}} required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="margin" max=1 step="any" class="form-control company-input" placeholder="ebitda margin" value={{margin}} required>
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="number" name="depAmort" min=0 max=0.99 step="any" class="form-control company-input" placeholder="depreciation & amortization %" value={{depAmort}} required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="capEx" min=0 max=0.99 step="any" class="form-control company-input" placeholder="capital expenditures %" value={{capEx}} required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="nwcDays" step="any" class="form-control company-input" placeholder="working capital days" value={{nwcDays}} required>
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="number" name="debt" min=0 step="any" class="form-control company-input" placeholder="debt financing" value={{debt}} required>
+				</div>
+				<div class="col-xs-4">
+				<input type="number" name="interestRate" min=0 max=0.99 step="any" class="form-control company-input" placeholder="cost of debt" value={{interestRate}} required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="taxRate" min=0 max=0.99 step="any" class="form-control company-input" placeholder="tax rate" value={{taxRate}} required>
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<button type="submit" class="btn btn-default btn-clean">Submit</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </script>
 

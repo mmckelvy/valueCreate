@@ -125,6 +125,12 @@ input::-webkit-inner-spin-button {
 .company-edit {
 	margin-top: 20px;
 	margin-right: 10px;
+	color: #cecece;
+}
+
+.company-edit:hover {
+	color: black;
+	cursor: pointer;
 }
 
 /* Existing company menu */
