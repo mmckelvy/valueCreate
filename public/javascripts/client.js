@@ -231,7 +231,6 @@ $(function () {
     // On click of the edit (pencil) icon in the existing company list, bring up the input form with the clicked company's inputs.
     $('.maincontent').on('click', '#edit-company', function (e) {
         var queryItem = $(this).attr('name');
-        console.log(queryItem);
         // Make an ajax call to get the appropriate company.        
         $.get ('/editcompany', {queryItem: queryItem}, function (results) {
             $('.maincontent').empty();

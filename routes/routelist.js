@@ -73,6 +73,7 @@ module.exports = function (app) {
 	app.post('/newcompany', function (req, res) {
 		var newCoData = req.body;
 		newCoData.username = req.session.username;
+		// Perform validation.
 		if ( utilities.cleanData(newCoData) === "error" ) {
 			res.send(utilities.cleanData(newCoData));
 		}
@@ -82,6 +83,7 @@ module.exports = function (app) {
 				if (err) {
 					res.send(err);
 				}
+				// Calculate results.
 				else {
 					var newCoResults = newCompany.getResults();
 					res.send(newCoResults);
@@ -99,6 +101,38 @@ module.exports = function (app) {
 
 			res.send(editCompany);
 		});
+	});
+
+	// Update existing company information and re-run valuation.
+	app.post ('/updatecompany', function (req, res) {
+		var updateData = req.body;
+		updateData.username = req.session.username;
+		// Perform validation.
+		if ( utilities.cleanData(updateData) === "error" ) {
+			res.send(utilities.cleanData(updateData));
+		}
+		else {
+			cleanUpdateData = utilities.cleanData(updateData);
+			// Find requested company in database.
+			Company.findOne({ username: updateData.username, companyName: cleanUpdateData.companyName}, function (err, updateCompany) {
+				if (err) {res.send('there was an error')}
+				// Update the company properties.
+				for (var key in updateCompany) {
+					updateCompany[key] = updateData[key];
+				}
+			});
+			// Save the update.
+			updateCompany.save(function (err) {
+				if (err) {
+					res.send(err);
+				}
+				// Calculate valuation results and send back to the client.
+				else {
+					var updateResults = updateCompany.getResults();
+					res.send(updateResults);
+				}
+			});
+		}
 	});
 
 	// Send client a list of all existing companies.
