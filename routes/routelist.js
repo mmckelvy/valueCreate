@@ -13,7 +13,7 @@ module.exports = function (app) {
 		res.render('index');
 	});
 	
-	// Receive user register information and authenticate user input.
+	// Receive user registration information and authenticate user input.
 	app.post('/register', function (req, res) {
 		var newUserInfo = req.body;
 		// Create a new mongoose User model with the user input.

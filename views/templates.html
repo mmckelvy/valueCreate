@@ -60,46 +60,46 @@
 		<form id="add-company-form">
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" name="companyName" class="form-control company-input" placeholder="company name" value="NewCo" required> 
+					<input type="text" name="companyName" class="form-control company-input" placeholder="company name" required> 
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="targetReturns" min=0.01 max=1 step="any" class="form-control company-input" placeholder="target return" value=0.2 required>
+					<input type="number" name="targetReturns" min=0.01 max=1 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number from 0.01 to 1" placeholder="target return" required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="exitMultiple" min=1 max=15 step="any" class="form-control company-input" placeholder="exit multiple" value=5 required> 
-				</div>
-			</div>
-			<div class="row newCo-row">
-				<div class="col-xs-4">
-					<input type="number" name="baseRev" min=0.1 step="any" class="form-control company-input" placeholder="base year revenue" value=100 required>
-				</div>
-				<div class="col-xs-4">
-					<input type="number" name="cagr" step="any" class="form-control company-input" placeholder="5 year revenue cagr" value=0.05 required>
-				</div>
-				<div class="col-xs-4">
-					<input type="number" name="margin" max=1 step="any" class="form-control company-input" placeholder="ebitda margin" value=0.25 required>
+					<input type="number" name="exitMultiple" min=1 max=15 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number from 1 to 15" placeholder="exit multiple" required> 
 				</div>
 			</div>
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="number" name="depAmort" min=0 max=0.99 step="any" class="form-control company-input" placeholder="depreciation & amortization %" value=0.02 required>
+					<input type="number" name="baseRev" min=0.1 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number greater than 0.1" placeholder="base year revenue" required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="capEx" min=0 max=0.99 step="any" class="form-control company-input" placeholder="capital expenditures %" value=0.025 required>
+					<input type="number" name="cagr" step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number in decimal form (e.g. 0.05)"  placeholder="5 year revenue cagr" required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="nwcDays" step="any" class="form-control company-input" placeholder="working capital days" value=30 required>
+					<input type="number" name="margin" max=1 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number less than 1" placeholder="ebitda margin" required>
 				</div>
 			</div>
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="number" name="debt" min=0 step="any" class="form-control company-input" placeholder="debt financing" value=25 required>
+					<input type="number" name="depAmort" min=0 max=0.99 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number from 0 to 0.99" placeholder="depreciation & amortization %" required>
 				</div>
 				<div class="col-xs-4">
-				<input type="number" name="interestRate" min=0 max=0.99 step="any" class="form-control company-input" placeholder="cost of debt" value=0.06 required>
+					<input type="number" name="capEx" min=0 max=0.99 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number from 0 to 0.99" placeholder="capital expenditures %" required>
 				</div>
 				<div class="col-xs-4">
-					<input type="number" name="taxRate" min=0 max=0.99 step="any" class="form-control company-input" placeholder="tax rate" value=0.4 required>
+					<input type="number" name="nwcDays" step="any" class="form-control company-input" data-toggle="tooltip" title="Enter any number" placeholder="working capital days" required>
+				</div>
+			</div>
+			<div class="row newCo-row">
+				<div class="col-xs-4">
+					<input type="number" name="debt" min=0 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number greater than 0" placeholder="debt financing" required>
+				</div>
+				<div class="col-xs-4">
+				<input type="number" name="interestRate" min=0 max=0.99 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number from 0 to 0.99" placeholder="cost of debt" required>
+				</div>
+				<div class="col-xs-4">
+					<input type="number" name="taxRate" min=0 max=0.99 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number from 0 to 0.99" placeholder="tax rate" required>
 				</div>
 			</div>
 			<div class="row newCo-row">

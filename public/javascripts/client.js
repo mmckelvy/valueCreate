@@ -1,6 +1,12 @@
 $(function () {
-	
-	// RENDERING
+
+	// INITIALIZING
+    // Initialize Bootstrap tooltips.
+    $('body').tooltip({
+        selector: '[data-toggle=tooltip]'
+    });
+
+    // RENDERING
 	// Processes Handlebars templates.
     var renderElements = function (template, data) {
 		var templateSource = template.html();
@@ -178,6 +184,7 @@ $(function () {
                     showElements($('#add-company-container'));
                     $('#first-input').focus(); 
                 }, 0 );
+                // $('.company-input').tooltip();
             }
             else {
                 $('.maincontent').append('<p class="instructions">Please login or register before you create a company.')
