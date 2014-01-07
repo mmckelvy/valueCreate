@@ -114,25 +114,48 @@ module.exports = function (app) {
 		else {
 			cleanUpdateData = utilities.cleanData(updateData);
 			// Find requested company in database.
-			Company.findOne({ username: updateData.username, companyName: cleanUpdateData.companyName}, function (err, updateCompany) {
+			Company.findOne({ username: cleanUpdateData.username, companyName: cleanUpdateData.companyName}, function (err, updateCompany) {
 				if (err) {res.send('there was an error')}
 				// Update the company properties.
-				for (var key in updateCompany) {
-					updateCompany[key] = updateData[key];
-				}
-			});
-			// Save the update.
-			updateCompany.save(function (err) {
-				if (err) {
-					res.send(err);
-				}
-				// Calculate valuation results and send back to the client.
-				else {
-					var updateResults = updateCompany.getResults();
-					res.send(updateResults);
-				}
+				updateCompany.targetReturns = cleanUpdateData.targetReturns;
+				updateCompany.exitMultiple = cleanUpdateData.exitMultiple;
+				updateCompany.baseRev = cleanUpdateData.baseRev;
+				updateCompany.cagr = cleanUpdateData.cagr;
+				updateCompany.margin = cleanUpdateData.margin;
+				updateCompany.depAmort = cleanUpdateData.depAmort;
+				updateCompany.capEx = cleanUpdateData.capEx;
+				updateCompany.nwcDays = cleanUpdateData.nwcDays;
+				updateCompany.debt = cleanUpdateData.debt;
+				updateCompany.interestRate = cleanUpdateData.interestRate;
+				updateCompany.taxRate = cleanUpdateData.taxRate;
+				// Save the update.
+				updateCompany.save(function (err) {
+					if (err) {
+						res.send(err);
+					}
+					// Calculate valuation results and send back to the client.
+					else {
+						var updateResults = updateCompany.getResults();
+						res.send(updateResults);
+					}
+				});
 			});
 		}
+	});
+
+	// Receive delete request from client.  Delete company.
+	app.get('/deletecompany', function (req, res) {
+		var userMatch = req.session.username;
+		var deleteCompany = req.query.queryItem;
+		Company.findOne({ username: userMatch, companyName: deleteCompany}, function (err, toDeleteCo) {
+			if (err) {res.send('there was an error')}
+			toDeleteCo.remove();
+			var confirmMsg = {
+				deleted: deleteCompany,
+				message: 'successfully deleted.'
+			};
+			res.send(confirmMsg);
+		});
 	});
 
 	// Send client a list of all existing companies.

@@ -217,7 +217,7 @@ $(function () {
         });
     });
 
-    // On click of particular company, send value of company clicked to the server.
+    // On click of particular existing company, send value of company clicked to the server.
     $('.maincontent').on('click', '.clickable', function (e) {
         var queryItem = $(this).attr('name');
         $.get ('/findexisting', {queryItem: queryItem}, function (results) {
@@ -238,6 +238,36 @@ $(function () {
             setTimeout( function () {
                 showElements($('#editCo-container'));
                 $('#first-input').focus();
+            }, 0 );
+        });
+    });
+
+    // On submit of the edit company form, send revised information to the server, show an updated valuation.
+    $('.maincontent').on('submit', '#edit-company-form', function (e) {
+        e.preventDefault();
+        $.post ('/updatecompany', $('#edit-company-form').serialize(), function (results) {
+            // Receive calculations from the server.  If user input was inaccurate, return an error message, else, render the calculation results.
+            $('.maincontent').empty();
+            console.log(results);
+            if ( results === "error" || "message" in results ) {
+                $('.maincontent').append('<p class="instructions">Invalid input, please try again.</p>');
+            }
+            else {
+                renderElements($('#results-template'), results);
+                createChart($('#chart-container'), results);
+            }
+        });
+    });    
+
+    // On click of the "x" button, delete the company.
+    $('.maincontent').on('click', '#delete-company', function (e) {
+        var queryItem = $(this).attr('name');
+        // Make ajax call to delete the appropriate company.
+        $.get ('/deletecompany', {queryItem: queryItem}, function (results) {
+            $('.maincontent').empty();
+            renderElements($('#confirm-template'), results);
+            setTimeout( function () {
+                showElements($('#confirm-container'));
             }, 0 );
         });
     });
