@@ -106,6 +106,7 @@ module.exports = function (app) {
 	// Update existing company information and re-run valuation.
 	app.post ('/updatecompany', function (req, res) {
 		var updateData = req.body;
+		console.log(updateData);
 		updateData.username = req.session.username;
 		// Perform validation.
 		if ( utilities.cleanData(updateData) === "error" ) {

@@ -7,7 +7,7 @@ $(function () {
     });
 
     // RENDERING
-	// Processes Handlebars templates.
+	// Process Handlebars templates.
     var renderElements = function (template, data) {
 		var templateSource = template.html();
 		var renderTemplate = Handlebars.compile(templateSource);
@@ -15,12 +15,12 @@ $(function () {
 		$('.maincontent').append(rendered);
 	};
 	
-    // Displays a hidden element.
+    // Display a hidden element.
 	var showElements = function (displayElement) {
 		displayElement.addClass('show');
 	};
 
-    // Creates a High Chart.
+    // Create a High Chart.
     var createChart = function (container, results) {
         Highcharts.setOptions({
             chart: {
@@ -184,7 +184,6 @@ $(function () {
                     showElements($('#add-company-container'));
                     $('#first-input').focus(); 
                 }, 0 );
-                // $('.company-input').tooltip();
             }
             else {
                 $('.maincontent').append('<p class="instructions">Please login or register before you create a company.')
