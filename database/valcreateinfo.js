@@ -17,15 +17,15 @@ var userSchema = new Schema ({
 
 // Performs username authentication.
 userSchema.methods.checkUsername = function () {
-	// Set a regular expression to accept usernames of 1-10 alphanumeric characters.
-	var userRegex = /^[a-zA-Z0-9]{1,10}$/;
+	// Set a regular expression to accept usernames of 1-12 alphanumeric characters.
+	var userRegex = /^[a-zA-Z0-9]{1,12}$/;
 	// Will return false if username does not match the regex, else true.
 	return userRegex.test(this.username); 
 };
 
 userSchema.methods.checkPassword = function () {
-	// Set a regular expression to accept usernames of 4-10 alphanumeric characters.
-	var passRegex = /^[a-zA-Z0-9]{4,10}$/;
+	// Set a regular expression to accept usernames of 4-12 alphanumeric characters.
+	var passRegex = /^[a-zA-Z0-9]{4,12}$/;
 	// Will return false if username does not match the regex, else true.
 	return passRegex.test(this.password);
 };
@@ -37,7 +37,8 @@ var companySchema = new Schema ({
 		type: String
 	},
 	companyName: {
-		type: String
+		type: String,
+		match: /^[a-zA-Z0-9]{1,12}$/
 	},
 	targetReturns: {
 		type: Number,

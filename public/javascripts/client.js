@@ -197,6 +197,7 @@ $(function () {
         $.post ('/newcompany', $('#add-company-form').serialize(), function (results) {
             // Receive calculations from the server.  If user input was inaccurate, return an error message, else, render the calculation results.
             $('.maincontent').empty();
+            // Server will send back a string "error" if the form was not fully completed or server will send an object with a "message" key if the data was out of range.
             if ( results === "error" || "message" in results ) {
                 $('.maincontent').append('<p class="instructions">Invalid input, please try again.</p>');
             }
@@ -254,7 +255,7 @@ $(function () {
         $.post ('/updatecompany', $('#edit-company-form').serialize(), function (results) {
             // Receive calculations from the server.  If user input was inaccurate, return an error message, else, render the calculation results.
             $('.maincontent').empty();
-            console.log(results);
+            // Server will send back a string "error" if the form was not fully completed or server will send an object with a "message" key if the data was out of range.
             if ( results === "error" || "message" in results ) {
                 $('.maincontent').append('<p class="instructions">Invalid input, please try again.</p>');
             }

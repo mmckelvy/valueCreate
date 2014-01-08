@@ -48,7 +48,7 @@ module.exports = function (app) {
 		// Query the database for the user.  Process the results.
 		else {
 			User.findOne({ username: existingUser.username, password: existingUser.password }, function (err, existingUser) {
-				if (err || existingUser === null) {res.send('Username and/or password not found.  Hit login and try again.')}
+				if (err || existingUser === null) {res.send('Username and/or password not found.  Click login and try again.')}
 				// Establish a session with the existing user.
 				else {
 					req.session.username = existingUser.username;
@@ -177,6 +177,7 @@ module.exports = function (app) {
 	app.get('/findexisting', function (req, res) {
 		var companyCriteria = req.query.queryItem;
 		var userCriteria = req.session.username;
+
 		Company.findOne({companyName: companyCriteria, username: userCriteria}, function (err, queriedCompany) {
 			if (err) {res.send('there was an error')}
 			// Calculate the valuation and package results in an object for transmission to client.
