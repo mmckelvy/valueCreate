@@ -1,4 +1,5 @@
 // Module dependencies.
+require('newrelic');
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -28,7 +29,6 @@ if ('development' == app.get('env')) {
 }
 
 // Call the route handler; connect to the relevant Mongo database.
-require('newrelic');
 require('./routes/routelist.js')(app);
 MongoURL = process.env.MONGOHQ_URL || 'mongodb://localhost/ValuationProject'; 
 mongoose.connect(MongoURL);
