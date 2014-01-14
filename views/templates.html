@@ -6,10 +6,10 @@
 		<form id="register-form">
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" name="username" class="form-control company-input" placeholder="username" required>
+					<input type="text" name="username" class="form-control company-input" pattern="[a-zA-Z0-9]{1,12}" data-toggle="tooltip" title="Use letters or numbers; no spaces, no more than 12 characters" placeholder="username" required>
 				</div>
 				<div class="col-xs-4">
-					<input type="text" name="password" class="form-control company-input" placeholder="password" required>
+					<input type="text" name="password" class="form-control company-input" pattern="[a-zA-Z0-9]{4,12}" data-toggle="tooltip" title="User letters or numbers; no spaces, min 4 / max 12 characters" placeholder="password" required>
 				</div>
 			</div>
 			<div class="row newCo-row">
@@ -29,10 +29,10 @@
 		<form id="login-form">
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" name="username" class="form-control company-input" placeholder="username" required>
+					<input type="text" name="username" class="form-control company-input" pattern="[a-zA-Z0-9]{1,12}" data-toggle="tooltip" title="Use letters or numbers; no spaces, no more than 12 characters" placeholder="username" required>
 				</div>
 				<div class="col-xs-4">
-					<input type="text" name="password" class="form-control company-input" placeholder="password" required>
+					<input type="text" name="password" class="form-control company-input" pattern="[a-zA-Z0-9]{4,12}" data-toggle="tooltip" title="User letters or numbers; no spaces, min 4 / max 12 characters" placeholder="password" required>
 				</div>
 			</div>
 			<div class="row newCo-row">
@@ -60,7 +60,7 @@
 		<form id="add-company-form">
 			<div class="row newCo-row">
 				<div class="col-xs-4">
-					<input type="text" name="companyName" class="form-control company-input" pattern="[a-zA-Z0-9]{1,12}" data-toggle="tooltip" title="Use letters or numbers; no spaces, no more than 10 characters" placeholder="company name" required> 
+					<input type="text" name="companyName" class="form-control company-input" pattern="[a-zA-Z0-9]{1,12}" data-toggle="tooltip" title="Use letters or numbers; no spaces, no more than 12 characters" placeholder="company name" required> 
 				</div>
 				<div class="col-xs-4">
 					<input type="number" name="targetReturns" min=0.01 max=1 step="any" class="form-control company-input" data-toggle="tooltip" title="Enter a number from 0.01 to 1" placeholder="target IRR" required>
